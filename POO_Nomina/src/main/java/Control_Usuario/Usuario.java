@@ -6,7 +6,7 @@ package Control_Usuario;
 
 /**
  *
- * @author Yamil
+ *
  */
 public class Usuario {
     private String IdTrabajador;
