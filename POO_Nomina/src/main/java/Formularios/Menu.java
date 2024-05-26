@@ -36,7 +36,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Jmi_Salir = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmi_AgregarEmpleado = new javax.swing.JMenu();
+        jmi = new javax.swing.JMenuItem();
+        jmi_VerListaEmpleado = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         Jmi_AgregarUsuarios = new javax.swing.JMenuItem();
@@ -75,9 +77,23 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Empleados");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jMenuBar1.add(jMenu2);
+        jmi_AgregarEmpleado.setText("Empleados");
+        jmi_AgregarEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+
+        jmi.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jmi.setText("Agregar Empleado");
+        jmi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiActionPerformed(evt);
+            }
+        });
+        jmi_AgregarEmpleado.add(jmi);
+
+        jmi_VerListaEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jmi_VerListaEmpleado.setText("Ver lista de Empleados");
+        jmi_AgregarEmpleado.add(jmi_VerListaEmpleado);
+
+        jMenuBar1.add(jmi_AgregarEmpleado);
 
         jMenu3.setText("Nomina");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -137,6 +153,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Jmi_MostrarUsuariosActionPerformed
 
+    private void jmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -177,10 +197,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Jmi_MostrarUsuarios;
     private javax.swing.JMenuItem Jmi_Salir;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmi;
+    private javax.swing.JMenu jmi_AgregarEmpleado;
+    private javax.swing.JMenuItem jmi_VerListaEmpleado;
     // End of variables declaration//GEN-END:variables
 }
