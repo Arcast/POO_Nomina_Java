@@ -14,8 +14,9 @@ import java.util.List;
  */
 public class UsuariosDAO {
     private File archivo;
-    
-    public UsuariosDAO(String filename) {
+    private String filename = "ControlUsuario.txt";
+        
+    public UsuariosDAO() {
         archivo = new File(filename);
         try {
             if (!archivo.exists()) {

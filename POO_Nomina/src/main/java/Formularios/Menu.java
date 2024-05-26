@@ -5,6 +5,7 @@
 package Formularios;
 
 import Control_Usuario.jd_AgregarUsuario;
+import Control_Usuario.jd_MostrarUsuarios;
 import javax.swing.JFrame;
 
 /**
@@ -140,7 +141,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void Jmi_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_SalirActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);    
+        this.dispose();    
     }//GEN-LAST:event_Jmi_SalirActionPerformed
 
     private void Jmi_AgregarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_AgregarUsuariosActionPerformed
@@ -151,6 +154,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void Jmi_MostrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_MostrarUsuariosActionPerformed
         // TODO add your handling code here:
+        jd_MostrarUsuarios mostrarUsuarios = new jd_MostrarUsuarios(this, rootPaneCheckingEnabled);
+        mostrarUsuarios.show();
     }//GEN-LAST:event_Jmi_MostrarUsuariosActionPerformed
 
     private void jmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActionPerformed

@@ -238,7 +238,7 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         
         Usuario usuario = new Usuario(Usuario, Contrasena);
         
-        UsuariosDAO usuariosDAO = new UsuariosDAO("ControlUsuario.txt");
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.crearUsuario(usuario);
                 
         txtUsuario.setText("");
