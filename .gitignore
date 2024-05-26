@@ -24,5 +24,8 @@ hs_err_pid*
 replay_pid*
 
 #Archivos de compilation
-*/POO_Nomina/target/maven-status/maven-compiler-plugin/compile/default-compile/
+*/target/maven-status/maven-compiler-plugin/compile/default-compile/
+POO_Nomina/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+
+
 
