@@ -4,6 +4,10 @@
  */
 package Formularios;
 
+import Control_Usuario.Usuario;
+import Control_Usuario.UsuariosDAO;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -163,15 +167,45 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void InicioSesion(){
-        String Usuario, Contrasena;
-        Usuario = txtUsuario.getText().toString();
-        Contrasena = txtContrasena.getText().toString();
-        
-        if (Usuario.equals("admin") && Contrasena.equals("admin")) {
-            menu.setVisible(true);    
-            this.dispose();        
-        }else{
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Notificación" , JOptionPane.ERROR_MESSAGE);
+        try {
+            String _usuario, _contrasena;
+            _usuario = txtUsuario.getText().toString();
+            _contrasena = txtContrasena.getText().toString();
+
+            if (_usuario.equals("admin") && _contrasena.equals("admin")) {
+                menu.setVisible(true);    
+                this.dispose();        
+            }else{
+            
+                List<Usuario> usuarios = new ArrayList<>();            
+                UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
+                usuarios = usuariosDAO.leerUsuarios();
+                
+                boolean existe = false;
+                for (Usuario us : usuarios) {
+                     if (us.getNombreUsuario().equals(_usuario)) {
+                        existe = true;
+                        break;
+                    }
+                }
+                
+                if (!existe) {
+                    JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                for (Usuario us : usuarios) {
+                     if (us.getNombreUsuario().equals(_usuario) && us.getContrasena().equals(_contrasena)) {
+                        menu.setVisible(true);    
+                        this.dispose();  
+                        return;
+                    }
+                }
+            
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrecta", "Notificación" , JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al Iniciar Sesión", "Error" , JOptionPane.ERROR_MESSAGE);
         }
     }
     
