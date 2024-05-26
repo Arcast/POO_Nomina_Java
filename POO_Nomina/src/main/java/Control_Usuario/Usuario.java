@@ -9,23 +9,13 @@ package Control_Usuario;
  *
  */
 public class Usuario {
-    private String IdTrabajador;
     private String NombreUsuario;
     private String Contrasena;
 
-   public Usuario(String IdTrabajador, String NombreUsuario, String Contrasena){
-       this.IdTrabajador = IdTrabajador;
+   public Usuario(String NombreUsuario, String Contrasena){
        this.NombreUsuario = NombreUsuario;
        this.Contrasena = Contrasena;
    }
-   
-    public String getIdTrabajador() {
-        return IdTrabajador;
-    }
-
-    public void setIdTrabajador(String IdTrabajador) {
-        this.IdTrabajador = IdTrabajador;
-    }
     
     public String getNombreUsuario() {
         return NombreUsuario;
@@ -45,12 +35,12 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return IdTrabajador + "," + NombreUsuario + "," + Contrasena;
+        return NombreUsuario + "," + Contrasena;
     }
 
     public static Usuario fromString(String linea) {
         String[] partes = linea.split(",");
-        return new Usuario(partes[0], partes[1], partes[2]);
+        return new Usuario(partes[0], partes[1]);
     }
     
     

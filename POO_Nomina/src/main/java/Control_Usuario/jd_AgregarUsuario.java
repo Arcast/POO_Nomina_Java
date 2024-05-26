@@ -4,6 +4,7 @@
  */
 package Control_Usuario;
 
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,11 +33,9 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtIdTrabajador = new javax.swing.JTextField();
         txtUsuario = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
         txtcontrasena2 = new javax.swing.JPasswordField();
@@ -55,10 +54,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Ingrese los datos del nuevo Usuario");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Id del Trabajador");
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Usuario");
@@ -70,12 +65,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña");
-
-        txtIdTrabajador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdTrabajadorActionPerformed(evt);
-            }
-        });
 
         btnAceptar.setBackground(new java.awt.Color(0, 204, 153));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -114,7 +103,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(23, 23, 23)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -122,11 +110,8 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtUsuario)
                                 .addComponent(txtContrasena)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(txtIdTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
                                 .addComponent(txtcontrasena2)))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,10 +119,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIdTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,11 +130,11 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtcontrasena2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,10 +166,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void txtIdTrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdTrabajadorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdTrabajadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,13 +210,9 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
     }
     
     public void AgregarUsuario(){
-        String IdTrabajador, Usuario, Contrasena, Contrasena2;        
+        try {
+            String Usuario, Contrasena, Contrasena2;        
                 
-        if (txtIdTrabajador.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Id de trabajador", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
         if (txtUsuario.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -250,13 +223,33 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
             return;
         }
                 
-        IdTrabajador = txtIdTrabajador.getText().toString();
         Usuario = txtUsuario.getText().toString();
         Contrasena = txtContrasena.getText().toString();
         Contrasena2 = txtcontrasena2.getText().toString();
         
         if (!Contrasena.equals(Contrasena2)) {
-            JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Notificación" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        }             
+        
+        if (JOptionPane.showConfirmDialog(this, "Desea agregar el usuario ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+          return;
+        }
+        
+        Usuario usuario = new Usuario(Usuario, Contrasena);
+        
+        UsuariosDAO usuariosDAO = new UsuariosDAO("ControlUsuario.txt");
+        usuariosDAO.crearUsuario(usuario);
+                
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtcontrasena2.setText("");
+        
+        JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+        
+        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
             return;
         }
              
@@ -267,13 +260,11 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtContrasena;
-    private javax.swing.JTextField txtIdTrabajador;
     private javax.swing.JTextField txtUsuario;
     private javax.swing.JPasswordField txtcontrasena2;
     // End of variables declaration//GEN-END:variables
