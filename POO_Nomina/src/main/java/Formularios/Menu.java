@@ -40,6 +40,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         Jmi_AgregarUsuarios = new javax.swing.JMenuItem();
+        Jmi_MostrarUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -94,6 +95,15 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(Jmi_AgregarUsuarios);
 
+        Jmi_MostrarUsuarios.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Jmi_MostrarUsuarios.setText("Mostrar Usuarios");
+        Jmi_MostrarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jmi_MostrarUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu4.add(Jmi_MostrarUsuarios);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -122,6 +132,10 @@ public class Menu extends javax.swing.JFrame {
         jd_AgregarUsuario agregarUsuarios = new jd_AgregarUsuario(this, rootPaneCheckingEnabled);
         agregarUsuarios.show();
     }//GEN-LAST:event_Jmi_AgregarUsuariosActionPerformed
+
+    private void Jmi_MostrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_MostrarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jmi_MostrarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +174,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Jmi_AgregarUsuarios;
+    private javax.swing.JMenuItem Jmi_MostrarUsuarios;
     private javax.swing.JMenuItem Jmi_Salir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
