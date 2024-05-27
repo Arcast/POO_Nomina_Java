@@ -317,6 +317,7 @@ public class jd_ModificarUsuario extends javax.swing.JDialog {
             
             txtContrasena.setBackground(Color.RED);
             txtcontrasena2.setBackground(Color.RED);
+            txtUsuario.enable(false);
             txtContrasena.enable(false);
             txtcontrasena2.enable(false);
             
