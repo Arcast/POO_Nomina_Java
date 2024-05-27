@@ -6,6 +6,7 @@ package Formularios;
 
 import Control_Usuario.Usuario;
 import Control_Usuario.UsuariosDAO;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -61,7 +62,7 @@ public class Inicio extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel1.setText("Inicio de Sesión");
@@ -73,9 +74,15 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(0, 204, 153));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +92,7 @@ public class Inicio extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(255, 0, 51));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +102,11 @@ public class Inicio extends javax.swing.JFrame {
 
         txtContrasena.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtContrasena.setText("jPasswordField1");
+        txtContrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContrasenaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -166,9 +179,33 @@ public class Inicio extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void txtContrasenaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContrasenaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode()==KeyEvent.VK_ENTER) {
+            InicioSesion();
+        }
+    }//GEN-LAST:event_txtContrasenaKeyPressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode()==KeyEvent.VK_ENTER) {
+            txtContrasena.requestFocus();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
     private void InicioSesion(){
         try {
             String _usuario, _contrasena;
+            
+             if (txtUsuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+                return;
+             }
+              if (txtContrasena.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+                return;
+             }
+            
             _usuario = txtUsuario.getText().toString();
             _contrasena = txtContrasena.getText().toString();
 
