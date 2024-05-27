@@ -5,6 +5,7 @@
 package Formularios;
 
 import Control_Usuario.jd_AgregarUsuario;
+import Control_Usuario.jd_EliminarUsuario;
 import Control_Usuario.jd_ModificarUsuario;
 import Control_Usuario.jd_MostrarUsuarios;
 import javax.swing.JFrame;
@@ -191,6 +192,8 @@ public class Menu extends javax.swing.JFrame {
 
     private void Jmi_EliminarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_EliminarUsuariosActionPerformed
         // TODO add your handling code here:
+        jd_EliminarUsuario eliminarUsuario = new jd_EliminarUsuario(this, rootPaneCheckingEnabled);
+        eliminarUsuario.show();
     }//GEN-LAST:event_Jmi_EliminarUsuariosActionPerformed
 
     /**
