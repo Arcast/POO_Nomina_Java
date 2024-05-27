@@ -44,6 +44,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         Jmi_AgregarUsuarios = new javax.swing.JMenuItem();
         Jmi_MostrarUsuarios = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -120,6 +121,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu4.add(Jmi_MostrarUsuarios);
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jMenuItem1.setText("Cambiar Contraseña");
+        jMenu4.add(jMenuItem1);
 
         jMenuBar1.add(jMenu4);
 
@@ -205,6 +210,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jmi;
     private javax.swing.JMenu jmi_AgregarEmpleado;
