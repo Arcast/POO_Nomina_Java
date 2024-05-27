@@ -266,9 +266,10 @@ public class jd_ModificarUsuario extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
+            
+            txtUsuario.enable(false);
             txtContrasena.enable(true);
-            txtcontrasena2.enable(true);
+            txtcontrasena2.enable(true);            
             txtContrasena.setBackground(Color.GREEN);
             txtcontrasena2.setBackground(Color.GREEN);
             

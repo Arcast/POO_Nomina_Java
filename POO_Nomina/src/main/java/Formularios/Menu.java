@@ -5,6 +5,7 @@
 package Formularios;
 
 import Control_Usuario.jd_AgregarUsuario;
+import Control_Usuario.jd_ModificarUsuario;
 import Control_Usuario.jd_MostrarUsuarios;
 import javax.swing.JFrame;
 
@@ -124,6 +125,11 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jMenuItem1.setText("Cambiar Contraseña");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem1);
 
         jMenuBar1.add(jMenu4);
@@ -166,6 +172,12 @@ public class Menu extends javax.swing.JFrame {
     private void jmiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jmiActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        jd_ModificarUsuario modificarUsuario = new jd_ModificarUsuario(this, rootPaneCheckingEnabled);
+        modificarUsuario.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
