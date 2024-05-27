@@ -45,7 +45,8 @@ public class Menu extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         Jmi_AgregarUsuarios = new javax.swing.JMenuItem();
         Jmi_MostrarUsuarios = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        Jmi_ModificarUsuarios = new javax.swing.JMenuItem();
+        Jmi_EliminarUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
@@ -123,14 +124,23 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(Jmi_MostrarUsuarios);
 
-        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jMenuItem1.setText("Cambiar Contraseña");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        Jmi_ModificarUsuarios.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Jmi_ModificarUsuarios.setText("Cambiar Contraseña");
+        Jmi_ModificarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                Jmi_ModificarUsuariosActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem1);
+        jMenu4.add(Jmi_ModificarUsuarios);
+
+        Jmi_EliminarUsuarios.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Jmi_EliminarUsuarios.setText("Eliminar Usuarios");
+        Jmi_EliminarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jmi_EliminarUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu4.add(Jmi_EliminarUsuarios);
 
         jMenuBar1.add(jMenu4);
 
@@ -173,11 +183,15 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jmiActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void Jmi_ModificarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_ModificarUsuariosActionPerformed
         // TODO add your handling code here:
         jd_ModificarUsuario modificarUsuario = new jd_ModificarUsuario(this, rootPaneCheckingEnabled);
         modificarUsuario.show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_Jmi_ModificarUsuariosActionPerformed
+
+    private void Jmi_EliminarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jmi_EliminarUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Jmi_EliminarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,13 +230,14 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Jmi_AgregarUsuarios;
+    private javax.swing.JMenuItem Jmi_EliminarUsuarios;
+    private javax.swing.JMenuItem Jmi_ModificarUsuarios;
     private javax.swing.JMenuItem Jmi_MostrarUsuarios;
     private javax.swing.JMenuItem Jmi_Salir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jmi;
     private javax.swing.JMenu jmi_AgregarEmpleado;
