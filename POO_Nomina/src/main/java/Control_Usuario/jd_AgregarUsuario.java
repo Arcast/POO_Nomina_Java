@@ -5,6 +5,8 @@
 package Control_Usuario;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,24 +53,37 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Ingrese los datos del nuevo Usuario");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Usuario");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Repetir Contraseña");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+
+        txtContrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContrasenaActionPerformed(evt);
+            }
+        });
+
+        txtcontrasena2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontrasena2ActionPerformed(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(0, 204, 153));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +93,6 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
 
         btnCancelar.setBackground(new java.awt.Color(255, 0, 51));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,6 +181,18 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContrasenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContrasenaActionPerformed
+
+    private void txtcontrasena2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontrasena2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontrasena2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,7 +237,7 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
     
     public void AgregarUsuario(){
         try {
-            String Usuario, Contrasena, Contrasena2;        
+            String NombreUsuario, Contrasena, Contrasena2;        
                 
         if (txtUsuario.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
@@ -222,10 +248,16 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-                
-        Usuario = txtUsuario.getText().toString();
+        
+        NombreUsuario = txtUsuario.getText().toString();
         Contrasena = txtContrasena.getText().toString();
         Contrasena2 = txtcontrasena2.getText().toString();
+        
+         boolean UsuarioExiste = ValidarUsuario(NombreUsuario);
+          if (UsuarioExiste) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
         
         if (!Contrasena.equals(Contrasena2)) {
             JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error" , JOptionPane.ERROR_MESSAGE);
@@ -236,7 +268,7 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
           return;
         }
         
-        Usuario usuario = new Usuario(Usuario, Contrasena);
+        Usuario usuario = new Usuario(NombreUsuario, Contrasena);
         
         UsuariosDAO usuariosDAO = new UsuariosDAO();
         usuariosDAO.crearUsuario(usuario);
@@ -253,6 +285,31 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
             return;
         }
              
+    
+    }
+    
+    public boolean ValidarUsuario(String NombreUsuario){
+        
+        try {
+            boolean existe = false;
+            List<Usuario> usuariosList = new ArrayList<>();            
+            UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
+            usuariosList = usuariosDAO.leerUsuarios();
+
+            
+            for (Usuario us : usuariosList) {
+                 if (us.getNombreUsuario().equals(NombreUsuario)) {
+                    existe = true;
+                    break;
+                }
+            }
+            
+            return existe;
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
     
     }
 
