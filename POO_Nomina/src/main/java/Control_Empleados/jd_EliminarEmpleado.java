@@ -64,7 +64,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
             }
         });
 
-        btnEliminarE.setBackground(new java.awt.Color(255, 255, 153));
+        btnEliminarE.setBackground(new java.awt.Color(255, 255, 102));
         btnEliminarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEliminarE.setText("Eliminar");
         btnEliminarE.addActionListener(new java.awt.event.ActionListener() {
@@ -86,11 +86,12 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnEliminarE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCancelarEliminarE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCancelarEliminarE)
+                                .addGap(22, 22, 22))
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(101, 101, 101)
@@ -129,7 +130,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
 
     private void btnCancelarEliminarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEliminarEActionPerformed
         // TODO add your handling code here:
-        //this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnCancelarEliminarEActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -139,7 +140,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
 
     private void btnEliminarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEActionPerformed
         // TODO add your handling code here:
-        //limpiar();
+        EliminarEmpleado(); 
     }//GEN-LAST:event_btnEliminarEActionPerformed
 
     /**
@@ -183,102 +184,71 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         });
     }
     
-   /* public void AgregarEmpleado(){
-        try {
-        String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado;
-        Double Salario_Fijo;
-        
-        if (txtID.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el id del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        if (txtNombre.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el nombre del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }        
-        
-        if (txtApellido.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el apellido del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        if (txtPuesto.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el puesto del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }   
-        
-        if (Double.parseDouble(jspSalarioFijo.getValue().toString()) <= 0 ) {
-            JOptionPane.showMessageDialog(this, "ingrese un salario valido", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            jspSalarioFijo.setValue(0);
-            return;
-        }        
-                
-        IdEmpleado = txtID.getText().toString();
-        NombreEmpleado= txtNombre.getText().toString();
-        ApellidoEmpleado = txtApellido.getText().toString();
-        PuestoEmpleado = txtPuesto.getText().toString();
-        Salario_Fijo = Double.parseDouble(jspSalarioFijo.getValue().toString());
-        
-             boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado);
-          if (EmpleadoExiste) {
-            JOptionPane.showMessageDialog(this, "El empleado ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
-        if (JOptionPane.showConfirmDialog(this, "Desea agregar los datos del empleado ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-          return;
-        }
-        
-        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo);
-        
-        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        empleadoDAO.crearEmpleado(empleado);
-                      
-        JOptionPane.showMessageDialog(this, "Empleado guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-        
-        limpiar();
-        
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el Empleado", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    }
     
-    public void limpiar(){
-        
-        txtID.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtPuesto.setText("");
-        jspSalarioFijo.setValue(0);
-        
-    }
-  public boolean ValidarEmpleado(String IdEmpleado){
-        
-        try {
-            boolean existe = false;
-            List<Empleado> empleadoList = new ArrayList<>();            
-            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
-            empleadoList = empleadoDAO.leerEmpleado();
+     public void ValidarEmpleado(){
+         try {
+            String IdEmpleado;
+            
+            if (txtID.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el id del empleado a eliminar", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return;
+            }
+            
+             IdEmpleado = txtID.getText().toString();
+            
+            List<Empleado> empleado = new ArrayList<>();            
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de empleado            empleado = empleadoDAO.leerEmpleado();
 
-            
-            for (Empleado us : empleadoList) {
-            
+            boolean existe = false;
+            for (Empleado us : empleado) {
                  if (us.getIdEmpleado().equals(IdEmpleado)) {
                     existe = true;
                     break;
                 }
             }
+
+            if (!existe) {
+                JOptionPane.showMessageDialog(this, "El id ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             
-            return existe;
+            //Eliminamos el empleado            
+            EliminarEmpleado();      
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el empleado", "Error" , JOptionPane.ERROR_MESSAGE);
-            return false;
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
         }
+     }
     
-    }
-*/
+    public void EliminarEmpleado(){
+        try{
+            String IdEmpleado;   
+
+            IdEmpleado = txtID.getText().toString();         
+
+            if (JOptionPane.showConfirmDialog(this, "Desea eliminar a este empleado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+              return;
+            }
+
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+            empleadoDAO.eliminarEmpleado(IdEmpleado);
+
+            txtID.setText("");
+                        
+            JOptionPane.showMessageDialog(this, "El empleado se eliminado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }    
+    
+    
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarEliminarE;
