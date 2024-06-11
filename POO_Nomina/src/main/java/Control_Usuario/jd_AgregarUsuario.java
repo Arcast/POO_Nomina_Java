@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Yamil
+ * 
  */
 public class jd_AgregarUsuario extends javax.swing.JDialog {
 

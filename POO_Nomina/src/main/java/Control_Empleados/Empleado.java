@@ -62,11 +62,11 @@ public class Empleado {
     }
     
     @Override//quitar el override
-    public String toString() {//cambiar nombre tostring
+    public String toString() {//cambiar nombre tostring a otro nombre ya que es una clase
         return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo;
     }
 
-    public static Empleado fromString(String linea) {//cambiar nombre
+    public static Empleado fromString(String linea) {//cambiar nombre (es una clase)
        String[] partes = linea.split(",");
        return new Empleado(partes[0], partes[1], partes[2], partes[3], Double.parseDouble(partes[4]));
     }

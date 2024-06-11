@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Yamil
+ * 
  */
 public class jd_MostrarUsuarios extends javax.swing.JDialog {
     

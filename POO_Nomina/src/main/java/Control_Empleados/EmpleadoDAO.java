@@ -8,9 +8,11 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/*CRUD(Crear, Leer, actualizar, eliminar)*/
 public class EmpleadoDAO {
-    private File archivo;
-    private String filename = "ControlEmpleado.txt";
+    private File archivo; 
+    private String filename = "ControlEmpleado.txt";/*es está declarando una variable de tipo String con el nombre "filename" 
+    y se le está asignando el valor "ControlEmpleado.txt". */
 
     public EmpleadoDAO() {
         archivo = new File(filename);
@@ -22,8 +24,12 @@ public class EmpleadoDAO {
             e.printStackTrace();
         }
     }
-
-    public void crearEmpleado(Empleado empleado) throws IOException {
+    /*el buffereWriter se utiliza para escribir texto en un archivo de texto 
+    de manera eficiente y con rendimiento optimo. "FileWriter" 
+    es una clase en Java que se utiliza para escribir datos en un archivo de texto. */
+    public void crearEmpleado(Empleado empleado) throws IOException { 
+        /*IOException es una excepción en Java que se lanza cuando ocurre un error 
+        relacionado con la entrada o salida de datos, como leer o escribir en archivos*/
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo, true))) {
             writer.write(empleado.toString());
             writer.newLine();

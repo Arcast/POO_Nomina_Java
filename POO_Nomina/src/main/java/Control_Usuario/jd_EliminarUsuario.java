@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Yamil
+ * 
  */
 public class jd_EliminarUsuario extends javax.swing.JDialog {
 
