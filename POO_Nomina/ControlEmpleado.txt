@@ -1,4 +1,4 @@
 001,miley,trana,programador,10000.0
-002,miley,castaneda,programador,20000.0
+002,mileyda,castaneda,programador,30000.0
 222,mil,trana,ing,10000.0
 678,jose,trana,ing,10000.0
