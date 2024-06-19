@@ -44,8 +44,10 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Id del Empleado:");
 
         txtID.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -57,6 +59,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
 
         btnCancelarEliminarE.setBackground(new java.awt.Color(255, 0, 51));
         btnCancelarEliminarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelarEliminarE.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelarEliminarE.setText("Cancelar");
         btnCancelarEliminarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +69,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
 
         btnEliminarE.setBackground(new java.awt.Color(255, 255, 153));
         btnEliminarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarE.setForeground(new java.awt.Color(0, 0, 0));
         btnEliminarE.setText("Eliminar");
         btnEliminarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +78,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Eliminar Empleado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -86,10 +91,10 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
                         .addGap(32, 32, 32)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnEliminarE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnCancelarEliminarE))
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
