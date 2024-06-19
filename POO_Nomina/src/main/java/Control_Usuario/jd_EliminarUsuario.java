@@ -199,7 +199,7 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
             return;
             }
             
-             _usuario = txtUsuario.getText().toString();
+             _usuario = txtUsuario.getText().toString().toLowerCase();
             
             List<Usuario> usuarios = new ArrayList<>();            
             UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
@@ -207,7 +207,7 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
 
             boolean existe = false;
             for (Usuario us : usuarios) {
-                 if (us.getNombreUsuario().equals(_usuario)) {
+                 if (us.getNombreUsuario().toLowerCase().equals(_usuario)) {
                     existe = true;
                     break;
                 }

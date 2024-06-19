@@ -65,15 +65,23 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Inicio de Sesión");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Usuario");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
 
         txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtUsuarioKeyPressed(evt);
@@ -126,7 +134,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                             .addComponent(txtContrasena))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnAceptar)
@@ -193,6 +201,10 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
     private void InicioSesion(){
         try {
             String _usuario, _contrasena;
@@ -214,7 +226,7 @@ public class Inicio extends javax.swing.JFrame {
                 this.dispose();        
             }else{
             
-                List<Usuario> usuarios = new ArrayList<>();            
+                List<Usuario> usuarios = new ArrayList<>(); // Declaramos el usuario a conectarse        
                 UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
                 usuarios = usuariosDAO.leerUsuarios();
                 

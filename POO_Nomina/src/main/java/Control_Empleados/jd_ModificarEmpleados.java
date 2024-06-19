@@ -4,25 +4,32 @@
  */
 package Control_Empleados;
 
-import Control_Usuario.Usuario;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ernes
  */
-public class jd_AgregarEmpleado extends javax.swing.JDialog {
-
+public class jd_ModificarEmpleados extends javax.swing.JDialog {
+    private int FilaSeleccionada;
+    private DefaultTableModel modelo;    
+    String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo;
     /**
      * Creates new form jd_AgregarEmpleado
      */
-    public jd_AgregarEmpleado(java.awt.Frame parent, boolean modal) {
+    public jd_ModificarEmpleados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        modelo =(DefaultTableModel) tblEmpleados.getModel();
+        MostrarEmpleados();
+        BloqueoDesbloqueo(false);
     }
 
     /**
@@ -48,6 +55,8 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         btnCancelarE = new javax.swing.JButton();
         btnLimpiarE = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
         jspSalarioFijo = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -74,6 +83,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Salario Fijo:");
 
+        txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +91,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
             }
         });
 
+        txtNombre.setEditable(false);
         txtNombre.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,14 +99,16 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
             }
         });
 
+        txtApellido.setEditable(false);
         txtApellido.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
 
+        txtPuesto.setEditable(false);
         txtPuesto.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
 
         btnGuardar.setBackground(new java.awt.Color(0, 204, 153));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(0, 0, 0));
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Modificar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -124,23 +137,57 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Agregar Empleado");
+        jLabel6.setText("Modificar Empleado");
+
+        tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpleadosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblEmpleados);
 
         jspSalarioFijo.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.25f));
+        jspSalarioFijo.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(185, 185, 185))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(110, 110, 110)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnLimpiarE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCancelarE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,18 +197,13 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
                                 .addComponent(txtNombre)
                                 .addComponent(txtApellido)
                                 .addComponent(txtPuesto))
-                            .addComponent(jspSalarioFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLimpiarE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelarE)))
-                .addContainerGap(24, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                            .addComponent(jspSalarioFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(99, 99, 99)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,23 +230,25 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jspSalarioFijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelarE)
                     .addComponent(btnLimpiarE)
                     .addComponent(btnGuardar))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(54, 54, 54))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, Short.MAX_VALUE)
         );
 
         pack();
@@ -217,12 +261,13 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        AgregarEmpleado();
+        ModificarEmpleado();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEActionPerformed
         // TODO add your handling code here:
         limpiar();
+        MostrarEmpleados();        
     }//GEN-LAST:event_btnLimpiarEActionPerformed
 
     private void btnCancelarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEActionPerformed
@@ -233,6 +278,12 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
+        // TODO add your handling code here:
+        FilaSeleccionada = tblEmpleados.rowAtPoint(evt.getPoint());
+        CapturarEmpleado();
+    }//GEN-LAST:event_tblEmpleadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -251,19 +302,22 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jd_AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_ModificarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jd_AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_ModificarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jd_AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_ModificarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jd_AgregarEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_ModificarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(() -> {
-            jd_AgregarEmpleado dialog = new jd_AgregarEmpleado(new javax.swing.JFrame(), true);
+            jd_ModificarEmpleados dialog = new jd_ModificarEmpleados(new javax.swing.JFrame(), true);
             dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -274,9 +328,9 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         });
     }
     
-    public void AgregarEmpleado(){
+    public void ModificarEmpleado(){
         try {
-        String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado;
+        String IdEmpleadoNuevo, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado;
         Double Salario_Fijo;
         
         if (txtID.getText().equals("")) {
@@ -305,17 +359,20 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
             return;
         }        
                 
-        IdEmpleado = txtID.getText().toString();
+        IdEmpleadoNuevo = txtID.getText().toString();
         NombreEmpleado= txtNombre.getText().toString();
         ApellidoEmpleado = txtApellido.getText().toString();
         PuestoEmpleado = txtPuesto.getText().toString();
         Salario_Fijo = Double.parseDouble(jspSalarioFijo.getValue().toString());
         
-             boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado);
-          if (EmpleadoExiste) {
-            JOptionPane.showMessageDialog(this, "El empleado ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
+        if (!IdEmpleado.equals(IdEmpleadoNuevo)) {
+            boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado, IdEmpleadoNuevo);
+            if (EmpleadoExiste) {
+               JOptionPane.showMessageDialog(this, "El empleado ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
+               return;
+           } 
+        }        
+       
         if (JOptionPane.showConfirmDialog(this, "Desea agregar los datos del empleado ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
           return;
         }
@@ -323,14 +380,46 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo);
         
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        empleadoDAO.crearEmpleado(empleado);
+        empleadoDAO.actualizarEmpleado(IdEmpleado, empleado);
                       
-        JOptionPane.showMessageDialog(this, "Empleado guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Empleado Actualizado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
         
         limpiar();
+        MostrarEmpleados();
         
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el Empleado", "Error" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al actualizar el Empleado", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+    
+      public void MostrarEmpleados(){
+        try {                  
+            List<Empleado> empleado = new ArrayList<>();            
+            
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
+            empleado = empleadoDAO.leerEmpleado(); 
+            
+            //Limpieza de la tabla
+            int filas = modelo.getRowCount();
+
+            for (int a = 0; filas > a; a++) {
+                modelo.removeRow(0);
+            }
+                        
+            for (Empleado emp : empleado) {               
+                
+                IdEmpleado = emp.getIdEmpleado().toString();
+                NombreEmpleado = emp.getNombreEmpleado().toString();
+                ApellidoEmpleado = emp.getApellidoEmpleado().toString();
+                PuestoEmpleado = emp.getPuestoEmpleado().toString();
+                Salario_Fijo = emp.getSalario_Fijo().toString();
+                               
+                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo});
+            }
+                   
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al cargar usuarios", "Error" , JOptionPane.ERROR_MESSAGE);
             return;
         }
     }
@@ -343,19 +432,21 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         txtPuesto.setText("");
         jspSalarioFijo.setValue(0);
         
+        BloqueoDesbloqueo(false);
     }
-  public boolean ValidarEmpleado(String IdEmpleado){
+  public boolean ValidarEmpleado(String IdEmpleado, String IdEmpleadoNuevo){
         
         try {
             boolean existe = false;
             List<Empleado> empleadoList = new ArrayList<>();            
             EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
             empleadoList = empleadoDAO.leerEmpleado();
-
+            
+            empleadoList.remove(IdEmpleado);
             
             for (Empleado us : empleadoList) {
             
-                 if (us.getIdEmpleado().equals(IdEmpleado)) {
+                 if (us.getIdEmpleado().equals(IdEmpleadoNuevo)) {
                     existe = true;
                     break;
                 }
@@ -369,6 +460,41 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         }
     
     }
+  
+  private void CapturarEmpleado(){      
+      try {                  
+        //Obtenemmos los datos de la fila seleccionada  
+        IdEmpleado = String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 0)).toString();
+        txtID.setText(IdEmpleado);
+        txtNombre.setText(String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 1)));
+        txtApellido.setText(String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 2)));
+        txtPuesto.setText(String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 3)));
+        Double Salario = Double.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 4).toString());
+        jspSalarioFijo.setValue(Salario);
+        
+        BloqueoDesbloqueo(true);
+        
+      } catch (Exception e) {
+          System.out.println("Error cargando datos");
+      }
+   
+      
+  }
+  
+  private void BloqueoDesbloqueo(boolean valor){
+      
+      if (valor) {
+        txtID.setBackground(Color.GRAY);
+      }else{
+        txtID.setBackground(Color.ORANGE);
+      }
+      
+       //Desbloqueamos los campos 
+        txtNombre.setEditable(valor);
+        txtApellido.setEditable(valor);
+        txtPuesto.setEditable(valor);
+        jspSalarioFijo.setEnabled(valor);       
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarE;
@@ -381,7 +507,9 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jspSalarioFijo;
+    private javax.swing.JTable tblEmpleados;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;

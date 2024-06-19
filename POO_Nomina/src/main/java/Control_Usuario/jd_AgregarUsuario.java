@@ -4,6 +4,7 @@
  */
 package Control_Usuario;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +54,19 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Ingrese los datos del nuevo Usuario");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Usuario");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Repetir Contraseña");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña");
 
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -81,9 +86,15 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
                 txtcontrasena2ActionPerformed(evt);
             }
         });
+        txtcontrasena2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcontrasena2KeyPressed(evt);
+            }
+        });
 
         btnAceptar.setBackground(new java.awt.Color(0, 204, 153));
         btnAceptar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAceptar.setForeground(new java.awt.Color(0, 0, 0));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +104,7 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
 
         btnCancelar.setBackground(new java.awt.Color(255, 0, 51));
         btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 0, 0));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +205,13 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcontrasena2ActionPerformed
 
+    private void txtcontrasena2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontrasena2KeyPressed
+        // TODO add your handling code here:
+        if (evt.getExtendedKeyCode()==KeyEvent.VK_ENTER) {
+            AgregarUsuario();
+        }
+    }//GEN-LAST:event_txtcontrasena2KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -265,7 +284,11 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         }             
         
         if (JOptionPane.showConfirmDialog(this, "Desea agregar el usuario ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-          return;
+            txtUsuario.setText("");
+            txtContrasena.setText("");
+            txtcontrasena2.setText("");
+            txtUsuario.requestFocus();
+            return;
         }
         
         Usuario usuario = new Usuario(NombreUsuario, Contrasena);

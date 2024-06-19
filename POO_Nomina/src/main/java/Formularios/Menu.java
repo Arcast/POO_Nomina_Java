@@ -5,6 +5,7 @@
 package Formularios;
 
 import Control_Empleados.jd_AgregarEmpleado;
+import Control_Empleados.jd_ModificarEmpleados;
 import Control_Usuario.jd_AgregarUsuario;
 import Control_Usuario.jd_EliminarUsuario;
 import Control_Usuario.jd_ModificarUsuario;
@@ -103,6 +104,11 @@ public class Menu extends javax.swing.JFrame {
 
         jmodificarDatosE.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         jmodificarDatosE.setText("Modificar Datodos de empleado");
+        jmodificarDatosE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmodificarDatosEActionPerformed(evt);
+            }
+        });
         jmi_AgregarEmpleado.add(jmodificarDatosE);
 
         jmEliminarEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -208,6 +214,12 @@ public class Menu extends javax.swing.JFrame {
         jd_EliminarUsuario eliminarUsuario = new jd_EliminarUsuario(this, rootPaneCheckingEnabled);
         eliminarUsuario.show();
     }//GEN-LAST:event_Jmi_EliminarUsuariosActionPerformed
+
+    private void jmodificarDatosEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmodificarDatosEActionPerformed
+        // TODO add your handling code here:
+        jd_ModificarEmpleados mofificarEmpleado = new jd_ModificarEmpleados(this, rootPaneCheckingEnabled);
+        mofificarEmpleado.show();
+    }//GEN-LAST:event_jmodificarDatosEActionPerformed
 
     /**
      * @param args the command line arguments
