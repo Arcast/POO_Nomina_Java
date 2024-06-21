@@ -11,6 +11,7 @@ import Control_Usuario.jd_EliminarUsuario;
 import Control_Usuario.jd_ModificarUsuario;
 import Control_Usuario.jd_MostrarUsuarios;
 import javax.swing.JFrame;
+import pago__Nomina.jd_Nomina;
 
 /**
  *
@@ -47,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
         jmodificarDatosE = new javax.swing.JMenuItem();
         jmEliminarEmpleado = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jmi_NominaEmpleado = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         Jmi_AgregarUsuarios = new javax.swing.JMenuItem();
         Jmi_MostrarUsuarios = new javax.swing.JMenuItem();
@@ -119,6 +121,16 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setText("Nomina");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+
+        jmi_NominaEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jmi_NominaEmpleado.setText("Nomina Individual");
+        jmi_NominaEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_NominaEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jmi_NominaEmpleado);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Configuración");
@@ -221,6 +233,12 @@ public class Menu extends javax.swing.JFrame {
         mofificarEmpleado.show();
     }//GEN-LAST:event_jmodificarDatosEActionPerformed
 
+    private void jmi_NominaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_NominaEmpleadoActionPerformed
+        // TODO add your handling code here:
+        jd_Nomina nomina = new jd_Nomina(this, rootPaneCheckingEnabled);
+        nomina.show();
+    }//GEN-LAST:event_jmi_NominaEmpleadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -270,6 +288,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmEliminarEmpleado;
     private javax.swing.JMenuItem jmi;
     private javax.swing.JMenu jmi_AgregarEmpleado;
+    private javax.swing.JMenuItem jmi_NominaEmpleado;
     private javax.swing.JMenuItem jmi_VerListaEmpleado;
     private javax.swing.JMenuItem jmodificarDatosE;
     // End of variables declaration//GEN-END:variables
