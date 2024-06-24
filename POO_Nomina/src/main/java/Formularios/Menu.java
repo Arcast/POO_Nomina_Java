@@ -58,18 +58,18 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGap(0, 713, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 315, Short.MAX_VALUE)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -88,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jmi_AgregarEmpleado.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\hombre-empleado-alt.png")); // NOI18N
         jmi_AgregarEmpleado.setText("Empleados");
         jmi_AgregarEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
@@ -119,11 +120,12 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmi_AgregarEmpleado);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\calendario-de-nomina.png")); // NOI18N
         jMenu3.setText("Nomina");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
         jmi_NominaEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jmi_NominaEmpleado.setText("Nomina Individual");
+        jmi_NominaEmpleado.setText("Mostrar nomina");
         jmi_NominaEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_NominaEmpleadoActionPerformed(evt);
@@ -133,10 +135,12 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Configuración");
+        jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\circulo-de-usuario.png")); // NOI18N
+        jMenu4.setText("Usuario");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
         Jmi_AgregarUsuarios.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Jmi_AgregarUsuarios.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\agregar-usuario (2).png")); // NOI18N
         Jmi_AgregarUsuarios.setText("Agregar Usuarios");
         Jmi_AgregarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
