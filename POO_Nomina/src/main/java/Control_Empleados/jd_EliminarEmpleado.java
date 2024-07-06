@@ -4,7 +4,8 @@
  */
 package Control_Empleados;
 
-import Control_Usuario.Usuario;
+import Control_Empleados.EmpleadoDAO;
+import Control_Empleados.Empleado;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
+        btnAceptar.enable(false);
     }
 
     /**
@@ -38,28 +40,27 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         btnCancelarEliminarE = new javax.swing.JButton();
-        btnEliminarE = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setText("Id del Empleado:");
 
-        txtID.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtID.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
             }
         });
 
-        btnCancelarEliminarE.setBackground(new java.awt.Color(255, 0, 51));
-        btnCancelarEliminarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelarEliminarE.setForeground(new java.awt.Color(0, 0, 0));
+        btnCancelarEliminarE.setBackground(new java.awt.Color(255, 204, 204));
+        btnCancelarEliminarE.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnCancelarEliminarE.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cancelar.png")); // NOI18N
         btnCancelarEliminarE.setText("Cancelar");
         btnCancelarEliminarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,55 +68,63 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
             }
         });
 
-        btnEliminarE.setBackground(new java.awt.Color(255, 255, 153));
-        btnEliminarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarE.setForeground(new java.awt.Color(0, 0, 0));
-        btnEliminarE.setText("Eliminar");
-        btnEliminarE.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptar.setBackground(new java.awt.Color(204, 255, 204));
+        btnAceptar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cheque.png")); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarEActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Eliminar Empleado");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\Eliminar Emp.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(273, 273, 273))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(132, 132, 132)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnEliminarE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCancelarEliminarE))
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(260, 260, 260)
+                        .addComponent(btnAceptar)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnCancelarEliminarE)))
+                .addGap(0, 184, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap(82, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(60, 60, 60)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarE)
+                    .addComponent(btnAceptar)
                     .addComponent(btnCancelarEliminarE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(114, 114, 114))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,7 +135,7 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -134,18 +143,18 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
 
     private void btnCancelarEliminarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEliminarEActionPerformed
         // TODO add your handling code here:
-        //this.dispose();
+     this.dispose();
     }//GEN-LAST:event_btnCancelarEliminarEActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-
+        
     }//GEN-LAST:event_txtIDActionPerformed
 
-    private void btnEliminarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         //limpiar();
-    }//GEN-LAST:event_btnEliminarEActionPerformed
+       ValidarEmpleado();
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,108 +196,65 @@ public class jd_EliminarEmpleado extends javax.swing.JDialog {
             dialog.setVisible(true);
         });
     }
-    
-   /* public void AgregarEmpleado(){
-        try {
-        String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado;
-        Double Salario_Fijo;
-        
-        if (txtID.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el id del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        if (txtNombre.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el nombre del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }        
-        
-        if (txtApellido.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el apellido del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        
-        if (txtPuesto.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el puesto del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }   
-        
-        if (Double.parseDouble(jspSalarioFijo.getValue().toString()) <= 0 ) {
-            JOptionPane.showMessageDialog(this, "ingrese un salario valido", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            jspSalarioFijo.setValue(0);
-            return;
-        }        
-                
-        IdEmpleado = txtID.getText().toString();
-        NombreEmpleado= txtNombre.getText().toString();
-        ApellidoEmpleado = txtApellido.getText().toString();
-        PuestoEmpleado = txtPuesto.getText().toString();
-        Salario_Fijo = Double.parseDouble(jspSalarioFijo.getValue().toString());
-        
-             boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado);
-          if (EmpleadoExiste) {
-            JOptionPane.showMessageDialog(this, "El empleado ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
-        if (JOptionPane.showConfirmDialog(this, "Desea agregar los datos del empleado ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-          return;
-        }
-        
-        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo);
-        
-        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        empleadoDAO.crearEmpleado(empleado);
-                      
-        JOptionPane.showMessageDialog(this, "Empleado guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-        
-        limpiar();
-        
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el Empleado", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-    }
-    
-    public void limpiar(){
-        
-        txtID.setText("");
-        txtNombre.setText("");
-        txtApellido.setText("");
-        txtPuesto.setText("");
-        jspSalarioFijo.setValue(0);
-        
-    }
-  public boolean ValidarEmpleado(String IdEmpleado){
-        
-        try {
-            boolean existe = false;
-            List<Empleado> empleadoList = new ArrayList<>();            
-            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
-            empleadoList = empleadoDAO.leerEmpleado();
+   
+public void ValidarEmpleado() {
+    try {
+        String _empleado;
 
-            
-            for (Empleado us : empleadoList) {
-            
-                 if (us.getIdEmpleado().equals(IdEmpleado)) {
-                    existe = true;
-                    break;
-                }
-            }
-            
-            return existe;
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el empleado", "Error" , JOptionPane.ERROR_MESSAGE);
-            return false;
+        if (txtID.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el Id del Empleado a eliminar", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
-    
+
+        _empleado = txtID.getText().toString().toLowerCase();
+
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        List<Empleado> empleados = empleadoDAO.leerEmpleado();
+
+        boolean existe = false;
+        for (Empleado emp : empleados) {
+            if (emp.getIdEmpleado().toLowerCase().equals(_empleado)) {
+                existe = true;
+                break;
+            }
+        }
+
+        if (!existe) {
+            JOptionPane.showMessageDialog(this, "El Empleado ingresado no existe", "Notificación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Eliminamos el empleado
+        EliminarUsuario();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el empleado", "Error", JOptionPane.ERROR_MESSAGE);
     }
-*/
+}
+public void EliminarUsuario() {
+    try {
+        String _empleado = txtID.getText().toString();
+
+        if (JOptionPane.showConfirmDialog(this, "Desea eliminar al Empleado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        empleadoDAO.eliminarEmpleado(_empleado);
+
+        txtID.setText("");
+        JOptionPane.showMessageDialog(this, "Empleado eliminado exitosamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al eliminar al Empleado", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelarEliminarE;
-    private javax.swing.JButton btnEliminarE;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtID;

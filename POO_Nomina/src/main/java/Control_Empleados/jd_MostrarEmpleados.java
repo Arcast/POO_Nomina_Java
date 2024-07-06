@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package Control_Usuario;
+package Control_Empleados;
 
+import Control_Empleados.EmpleadoDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,27 +12,26 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableModel;
+import pago__Nomina.jd_Nomina;
 
 /**
  *
  * 
  */
-public class jd_MostrarUsuarios extends javax.swing.JDialog {
+public class jd_MostrarEmpleados extends javax.swing.JDialog {
     
     DefaultListModel<String> modeloUsuarios =new DefaultListModel<>();
     
     /**
      * Creates new form jd_AgregarUsuario
      */
-    public jd_MostrarUsuarios(java.awt.Frame parent, boolean modal) {
+    public jd_MostrarEmpleados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null); //Para poner centrado el jdialog
-        Jl_Usuarios.setModel(modeloUsuarios);
-          // Configurar el renderer después de la inicialización de los componentes
-        DefaultListCellRenderer cellRenderer = (DefaultListCellRenderer) Jl_Usuarios.getCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        MostrarUsuarios();
+            modelo =(DefaultTableModel) tblEmpleados.getModel();
+        MostrarEmpleados();
     }
 
     /**
@@ -45,10 +45,10 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Jl_Usuarios = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Usuario");
@@ -68,48 +68,68 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
             }
         });
 
-        Jl_Usuarios.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jScrollPane1.setViewportView(Jl_Usuarios);
-
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setText("Lista de Usuarios");
+        jLabel1.setText("Datos de los Empleados");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\perfil (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\jefe.png")); // NOI18N
+        jLabel3.setText("jLabel3");
+
+        tblEmpleados.setBorder(new javax.swing.border.MatteBorder(null));
+        tblEmpleados.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblEmpleadosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblEmpleados);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(42, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnCancelar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(39, 39, 39))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(btnCancelar)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -131,6 +151,12 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
        this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
+        // TODO add your handling code here:
+        FilaSeleccionada = tblEmpleados.rowAtPoint(evt.getPoint());
+          MostrarEmpleados();   
+    }//GEN-LAST:event_tblEmpleadosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -148,21 +174,23 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jd_MostrarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_MostrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jd_MostrarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_MostrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jd_MostrarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_MostrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jd_MostrarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(jd_MostrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                jd_MostrarUsuarios dialog = new jd_MostrarUsuarios(new javax.swing.JFrame(), true);
+                jd_MostrarEmpleados dialog = new jd_MostrarEmpleados(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -172,17 +200,35 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
-    }
+    } 
     
-    public void MostrarUsuarios(){
+            private int FilaSeleccionada;
+            private DefaultTableModel modelo;    
+            String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo;
+    
+    public void MostrarEmpleados(){
         try {                  
-            List<Usuario> usuarios = new ArrayList<>();
+            List<Empleado> empleado = new ArrayList<>();            
             
-            UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
-            usuarios = usuariosDAO.leerUsuarios(); 
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
+            empleado = empleadoDAO.leerEmpleado(); 
             
-            for (Usuario us : usuarios) {
-                 modeloUsuarios.addElement(us.getNombreUsuario().toString());
+            //Limpieza de la tabla
+            int filas = modelo.getRowCount();
+
+            for (int a = 0; filas > a; a++) {
+                modelo.removeRow(0);
+            }
+                        
+            for (Empleado emp : empleado) {               
+                
+                IdEmpleado = emp.getIdEmpleado().toString();
+                NombreEmpleado = emp.getNombreEmpleado().toString();
+                ApellidoEmpleado = emp.getApellidoEmpleado().toString();
+                PuestoEmpleado = emp.getPuestoEmpleado().toString();
+                Salario_Fijo = emp.getSalario_Fijo().toString();
+                               
+                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo});
             }
                    
         } catch (Exception e) {
@@ -192,11 +238,11 @@ public class jd_MostrarUsuarios extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Jl_Usuarios;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblEmpleados;
     // End of variables declaration//GEN-END:variables
 }
