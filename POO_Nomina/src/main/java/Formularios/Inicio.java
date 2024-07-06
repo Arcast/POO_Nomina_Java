@@ -88,7 +88,7 @@ public class Inicio extends javax.swing.JFrame {
 
         btnAceptar.setBackground(new java.awt.Color(204, 255, 204));
         btnAceptar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnAceptar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\candado-abierto.png")); // NOI18N
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/candado-abierto.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +98,7 @@ public class Inicio extends javax.swing.JFrame {
 
         btnCancelar.setBackground(new java.awt.Color(255, 204, 204));
         btnCancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cancelar.png")); // NOI18N
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
         btnCancelar.setText("cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\usuario (1).png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/usuario (1).png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

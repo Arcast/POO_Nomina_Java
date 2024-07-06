@@ -86,14 +86,14 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\UNI.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UNI.png"))); // NOI18N
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Inicio");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
         Jmi_Salir.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        Jmi_Salir.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cerrar-sesion.png")); // NOI18N
+        Jmi_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-sesion.png"))); // NOI18N
         Jmi_Salir.setText("Salir");
         Jmi_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jmi_AgregarEmpleado.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\hombre-empleado-alt.png")); // NOI18N
+        jmi_AgregarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hombre-empleado-alt.png"))); // NOI18N
         jmi_AgregarEmpleado.setText("Empleados");
         jmi_AgregarEmpleado.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
@@ -146,7 +146,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmi_AgregarEmpleado);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\calendario-de-nomina.png")); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/calendario-de-nomina.png"))); // NOI18N
         jMenu3.setText("Nomina");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
@@ -170,7 +170,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\circulo-de-usuario.png")); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/circulo-de-usuario.png"))); // NOI18N
         jMenu4.setText("Usuario");
         jMenu4.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 

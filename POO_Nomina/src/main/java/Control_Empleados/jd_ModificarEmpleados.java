@@ -102,7 +102,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
 
         btnGuardar.setBackground(new java.awt.Color(204, 255, 204));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\editar.png")); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/editar.png"))); // NOI18N
         btnGuardar.setText("Modificar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
 
         btnCancelarE.setBackground(new java.awt.Color(255, 204, 204));
         btnCancelarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelarE.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cancelar.png")); // NOI18N
+        btnCancelarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
         btnCancelarE.setText("Cancelar");
         btnCancelarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
 
         btnLimpiarE.setBackground(new java.awt.Color(255, 255, 204));
         btnLimpiarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnLimpiarE.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\limpiar.png")); // NOI18N
+        btnLimpiarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limpiar.png"))); // NOI18N
         btnLimpiarE.setText("Limpiar");
         btnLimpiarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +217,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(50, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimpiarE)
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

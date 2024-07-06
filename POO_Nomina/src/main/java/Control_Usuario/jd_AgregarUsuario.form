@@ -134,7 +134,7 @@
                       <Component id="btnAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="97" max="32767" attributes="0"/>
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -212,7 +212,7 @@
               <Font name="Times New Roman" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\cheque.png"/>
+              <Image iconType="3" name="/cheque.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
@@ -229,7 +229,7 @@
               <Font name="Times New Roman" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\cancelar.png"/>
+              <Image iconType="3" name="/cancelar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
@@ -242,7 +242,7 @@
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\agregar-usuario.png"/>
+              <Image iconType="3" name="/agregar-usuario.png"/>
             </Property>
           </Properties>
         </Component>

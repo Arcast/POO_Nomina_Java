@@ -112,7 +112,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
         btnCancelarE.setBackground(new java.awt.Color(255, 204, 204));
         btnCancelarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCancelarE.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cancelar.png")); // NOI18N
+        btnCancelarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
         btnCancelarE.setText("Cancelar");
         btnCancelarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +166,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
         btnTransaccion.setBackground(new java.awt.Color(153, 204, 255));
         btnTransaccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTransaccion.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\transferencia-bancaria.png")); // NOI18N
+        btnTransaccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferencia-bancaria.png"))); // NOI18N
         btnTransaccion.setText("empleados pagados");
         btnTransaccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,7 +176,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
         btnTransaccion1.setBackground(new java.awt.Color(153, 204, 255));
         btnTransaccion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTransaccion1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\transferir-dinero.png")); // NOI18N
+        btnTransaccion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferir-dinero.png"))); // NOI18N
         btnTransaccion1.setText("Proceso de pago");
         btnTransaccion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +251,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(37, Short.MAX_VALUE)
+                        .addContainerGap(13, Short.MAX_VALUE)
                         .addComponent(btnTransaccion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -285,7 +285,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransaccion1)
                     .addComponent(btnCancelarE))
-                .addGap(0, 54, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,41 +302,38 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+    private void btnTransaccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccion1ActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtIDActionPerformed
+    }//GEN-LAST:event_btnTransaccion1ActionPerformed
+
+    private void btnTransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTransaccionActionPerformed
+
+    private void txtPuesto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPuesto2ActionPerformed
+
+    private void txtPuesto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPuesto1ActionPerformed
 
     private void btnCancelarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnCancelarEActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
     private void txtPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuestoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPuestoActionPerformed
 
-    private void txtPuesto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto1ActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuesto1ActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtPuesto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto2ActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuesto2ActionPerformed
-
-    private void btnTransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionActionPerformed
-        // TODO add your handling code here:
-       
-      
-    }//GEN-LAST:event_btnTransaccionActionPerformed
-
-    private void btnTransaccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccion1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTransaccion1ActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
 
     /**
      * @param args the command line arguments

@@ -63,7 +63,7 @@ public class jd_Nomina extends javax.swing.JDialog {
 
         btnCancelarE.setBackground(new java.awt.Color(255, 204, 204));
         btnCancelarE.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        btnCancelarE.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\cerrar-sesion.png")); // NOI18N
+        btnCancelarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cerrar-sesion.png"))); // NOI18N
         btnCancelarE.setText("salir");
         btnCancelarE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +90,7 @@ public class jd_Nomina extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ernes\\OneDrive\\Documentos\\Proyecto_imagenes\\salario (1).png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salario (1).png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
         jLabel6.setText("\"Listado de Empleados con Nómina Pagada\"       ");

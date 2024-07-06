@@ -15,7 +15,7 @@
                 <exec.appArgs></exec.appArgs>
                 <exec.mainClass>Formularios.Inicio</exec.mainClass>
                 <exec.executable>java</exec.executable>
-                <exec.workingdir>C:\Users\ernes\OneDrive\Documentos\clonarProyectoNomina\POO_Nomina_Java\POO_Nomina</exec.workingdir>
+                <exec.workingdir></exec.workingdir>
             </properties>
         </action>
         <action>
@@ -31,10 +31,10 @@
                 <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs></exec.appArgs>
-                <exec.mainClass>Formularios.Inicio</exec.mainClass>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
-                <exec.workingdir>C:\Users\ernes\OneDrive\Documentos\clonarProyectoNomina\POO_Nomina_Java\POO_Nomina</exec.workingdir>
+                <exec.workingdir></exec.workingdir>
             </properties>
         </action>
         <action>
@@ -49,10 +49,10 @@
             <properties>
                 <exec.vmArgs></exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
-                <exec.mainClass>Formularios.Inicio</exec.mainClass>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
                 <exec.executable>java</exec.executable>
+                <exec.workingdir></exec.workingdir>
                 <exec.appArgs></exec.appArgs>
-                <exec.workingdir>C:\Users\ernes\OneDrive\Documentos\clonarProyectoNomina\POO_Nomina_Java\POO_Nomina</exec.workingdir>
             </properties>
         </action>
     </actions>

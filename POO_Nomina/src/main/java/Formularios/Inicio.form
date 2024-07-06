@@ -171,7 +171,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\candado-abierto.png"/>
+              <Image iconType="3" name="/candado-abierto.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
@@ -188,7 +188,7 @@
               <Font name="Times New Roman" size="14" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\cancelar.png"/>
+              <Image iconType="3" name="/cancelar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="cancelar"/>
           </Properties>
@@ -212,7 +212,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\usuario (1).png"/>
+              <Image iconType="3" name="/usuario (1).png"/>
             </Property>
           </Properties>
         </Component>

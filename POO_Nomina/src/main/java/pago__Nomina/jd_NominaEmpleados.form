@@ -123,7 +123,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="37" max="32767" attributes="0"/>
+                          <EmptySpace pref="13" max="32767" attributes="0"/>
                           <Component id="btnTransaccion" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       </Group>
@@ -165,7 +165,7 @@
                       <Component id="btnTransaccion1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCancelarE" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="54" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -261,7 +261,7 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\cancelar.png"/>
+              <Image iconType="3" name="/cancelar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
@@ -381,7 +381,7 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\transferencia-bancaria.png"/>
+              <Image iconType="3" name="/transferencia-bancaria.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="empleados pagados"/>
           </Properties>
@@ -398,7 +398,7 @@
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ernes\OneDrive\Documentos\Proyecto_imagenes\transferir-dinero.png"/>
+              <Image iconType="3" name="/transferir-dinero.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Proceso de pago"/>
           </Properties>
