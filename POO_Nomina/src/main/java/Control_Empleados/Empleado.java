@@ -14,14 +14,18 @@ public class Empleado {
     private String ApellidoEmpleado;
     private String PuestoEmpleado;
     private Double Salario_Fijo;
+    private String Banco;
+    private String NumeroCuenta;
     
 
-   public Empleado(String IdEmpleado, String NombreEmpleado, String ApellidoEmpleado ,String PuestoEmpleado , Double Salario_Fijo ){
+   public Empleado(String IdEmpleado, String NombreEmpleado, String ApellidoEmpleado ,String PuestoEmpleado , Double Salario_Fijo, String Banco, String NumeroCuenta ){
        this.NombreEmpleado = NombreEmpleado;
        this.IdEmpleado = IdEmpleado;
        this.ApellidoEmpleado = ApellidoEmpleado;
        this.Salario_Fijo = Salario_Fijo;
        this.PuestoEmpleado = PuestoEmpleado;
+       this.Banco = Banco;
+       this.NumeroCuenta = NumeroCuenta;
    }
     
     public String getNombreEmpleado() {
@@ -61,14 +65,31 @@ public class Empleado {
         this.Salario_Fijo = Salario_Fijo;
     }
     
+       public String getBanco() {
+        return Banco;
+    }
+
+    public void setBanco(String Banco) {
+        this.Banco = Banco;
+    }
+    
+       public String getNumeroCuenta() {
+        return NumeroCuenta;
+    }
+
+    public void setNumeroCuenta(String NumeroCuenta) {
+        this.NumeroCuenta = NumeroCuenta;
+    }
+    
+    
     @Override//quitar el override
     public String toString() {//cambiar nombre tostring a otro nombre ya que es una clase
-        return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo;
+        return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo + "," + Banco + "," + NumeroCuenta;
     }
 
     public static Empleado fromString(String linea) {//cambiar nombre (es una clase)
        String[] partes = linea.split(",");
-       return new Empleado(partes[0], partes[1], partes[2], partes[3], Double.parseDouble(partes[4]));
+       return new Empleado(partes[0], partes[1], partes[2], partes[3], Double.parseDouble(partes[4]), partes[5], partes[6]);
     }
     
     

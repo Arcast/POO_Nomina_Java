@@ -22,6 +22,9 @@ import pago__Nomina.jd_Nomina;
 public class jd_MostrarEmpleados extends javax.swing.JDialog {
     
     DefaultListModel<String> modeloUsuarios =new DefaultListModel<>();
+    private int FilaSeleccionada;
+    private DefaultTableModel modelo;    
+    String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta;
     
     /**
      * Creates new form jd_AgregarUsuario
@@ -81,11 +84,11 @@ public class jd_MostrarEmpleados extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo"
+                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo", "Banco", "Num Cuenta"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -201,11 +204,7 @@ public class jd_MostrarEmpleados extends javax.swing.JDialog {
             }
         });
     } 
-    
-            private int FilaSeleccionada;
-            private DefaultTableModel modelo;    
-            String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo;
-    
+        
     public void MostrarEmpleados(){
         try {                  
             List<Empleado> empleado = new ArrayList<>();            
@@ -227,8 +226,10 @@ public class jd_MostrarEmpleados extends javax.swing.JDialog {
                 ApellidoEmpleado = emp.getApellidoEmpleado().toString();
                 PuestoEmpleado = emp.getPuestoEmpleado().toString();
                 Salario_Fijo = emp.getSalario_Fijo().toString();
+                Banco = emp.getBanco().toString();
+                NumeroCuenta = emp.getNumeroCuenta().toString();
                                
-                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo});
+                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta});
             }
                    
         } catch (Exception e) {
