@@ -5,7 +5,14 @@
 package Control_Empleados;
 
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -19,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
 public class jd_ModificarEmpleados extends javax.swing.JDialog {
     private int FilaSeleccionada;
     private DefaultTableModel modelo;    
-    String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta;
+    String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta, FechaIngreso;
     /**
      * Creates new form jd_AgregarEmpleado
      */
@@ -62,6 +69,8 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         txtCuenta = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cbxBanco = new javax.swing.JComboBox<>();
+        txtFechaIngreso = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -145,11 +154,11 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo", "Banco", "Num Cuenta"
+                "Id Trabajador", "Nombre", "Apellido", "Puesto", "Salario Fijo", "Banco", "Num Cuenta", "Fecha Ingreso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -188,6 +197,12 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         cbxBanco.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         cbxBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAFISE", "BAC" }));
 
+        txtFechaIngreso.setEditable(false);
+        txtFechaIngreso.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel9.setText("Fecha Ingreso");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,8 +220,8 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiarE, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(btnLimpiarE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelarE)
                 .addGap(39, 39, 39))
@@ -239,12 +254,14 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                     .addComponent(jspSalarioFijo)
-                    .addComponent(cbxBanco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbxBanco, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -266,11 +283,16 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
                     .addComponent(cbxBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -284,7 +306,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
                     .addComponent(btnGuardar)
                     .addComponent(btnLimpiarE)
                     .addComponent(btnCancelarE))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -377,7 +399,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
     
     public void ModificarEmpleado(){
         try {
-        String IdEmpleadoNuevo, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Banco, NumeroCuenta;
+        String IdEmpleadoNuevo, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Banco, NumeroCuenta, FechaIngreso;
         Double Salario_Fijo;
         
         if (txtID.getText().equals("")) {
@@ -410,6 +432,18 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ingrese el Numero de cuenta del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
             return;
         }   
+        
+        FechaIngreso = txtFechaIngreso.getText(); 
+         
+        if (!ValidarFormatoFecha(FechaIngreso)) {
+            JOptionPane.showMessageDialog(this, "Ingrese una Fecha valida", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return; 
+        }
+        
+         if (!validarFecha(FechaIngreso)) {
+            JOptionPane.showMessageDialog(this, "La fecha de ingreso no puede ser mayor a la actual", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return; 
+        }
                 
         IdEmpleadoNuevo = txtID.getText().toString();
         NombreEmpleado= txtNombre.getText().toString();
@@ -431,7 +465,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
           return;
         }
         
-        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta);
+        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta, FechaIngreso);
         
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         empleadoDAO.actualizarEmpleado(IdEmpleado, empleado);
@@ -470,8 +504,9 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
                 Salario_Fijo = emp.getSalario_Fijo().toString();
                 Banco = emp.getBanco().toString();
                 NumeroCuenta = emp.getNumeroCuenta().toString();
+                FechaIngreso = emp.getFechaIngreso().toString();
                                
-                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta});
+                 modelo.addRow(new Object[]{IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta, FechaIngreso});
             }
                    
         } catch (Exception e) {
@@ -489,6 +524,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         jspSalarioFijo.setValue(0);
         cbxBanco.setSelectedIndex(0);
         txtCuenta.setText("");
+        txtFechaIngreso.setText("");
         
         BloqueoDesbloqueo(false);
     }
@@ -531,6 +567,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         jspSalarioFijo.setValue(Salario);
         cbxBanco.setSelectedItem(tblEmpleados.getValueAt(FilaSeleccionada, 5));
         txtCuenta.setText(String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 6)));
+        txtFechaIngreso.setText(String.valueOf(tblEmpleados.getValueAt(FilaSeleccionada, 7)));
                 
         BloqueoDesbloqueo(true);
         
@@ -555,7 +592,41 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         txtPuesto.setEditable(valor);
         jspSalarioFijo.setEnabled(valor);    
         txtCuenta.setEditable(valor);
+        txtFechaIngreso.setEditable(valor);
   }
+  
+  
+  public boolean ValidarFormatoFecha(String FechaIngreso){
+  
+      DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+      df.setLenient(false);
+      try {
+          df.parse(FechaIngreso);
+      } catch (ParseException e) {
+          return false;
+      }
+      
+      return true;
+  }
+  
+
+    public boolean validarFecha(String fechaIngreso) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            try {
+                LocalDate fechaActual = LocalDate.now();            
+                LocalDate fechaIngresada = LocalDate.parse(fechaIngreso, formatter);
+
+                if (fechaIngresada.isAfter(fechaActual)) {
+                    return false;
+                }
+
+            } catch (DateTimeParseException e) {
+                return false;
+            }
+
+            return true;
+        }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarE;
@@ -570,12 +641,14 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jspSalarioFijo;
     private javax.swing.JTable tblEmpleados;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCuenta;
+    private javax.swing.JTextField txtFechaIngreso;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPuesto;

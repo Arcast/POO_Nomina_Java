@@ -16,9 +16,10 @@ public class Empleado {
     private Double Salario_Fijo;
     private String Banco;
     private String NumeroCuenta;
+    private String FechaIngreso;
     
 
-   public Empleado(String IdEmpleado, String NombreEmpleado, String ApellidoEmpleado ,String PuestoEmpleado , Double Salario_Fijo, String Banco, String NumeroCuenta ){
+   public Empleado(String IdEmpleado, String NombreEmpleado, String ApellidoEmpleado ,String PuestoEmpleado , Double Salario_Fijo, String Banco, String NumeroCuenta, String Fechaingreso ){
        this.NombreEmpleado = NombreEmpleado;
        this.IdEmpleado = IdEmpleado;
        this.ApellidoEmpleado = ApellidoEmpleado;
@@ -26,6 +27,7 @@ public class Empleado {
        this.PuestoEmpleado = PuestoEmpleado;
        this.Banco = Banco;
        this.NumeroCuenta = NumeroCuenta;
+       this.FechaIngreso = Fechaingreso;
    }
     
     public String getNombreEmpleado() {
@@ -73,7 +75,7 @@ public class Empleado {
         this.Banco = Banco;
     }
     
-       public String getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return NumeroCuenta;
     }
 
@@ -81,15 +83,23 @@ public class Empleado {
         this.NumeroCuenta = NumeroCuenta;
     }
     
+    public String getFechaIngreso() {
+        return FechaIngreso;
+    }
+
+    public void setFechaIngreso(String FechaString) {
+        this.FechaIngreso = FechaIngreso;
+    }
+    
     
     @Override//quitar el override
     public String toString() {//cambiar nombre tostring a otro nombre ya que es una clase
-        return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo + "," + Banco + "," + NumeroCuenta;
+        return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo + "," + Banco + "," + NumeroCuenta + "," + FechaIngreso;
     }
 
     public static Empleado fromString(String linea) {//cambiar nombre (es una clase)
        String[] partes = linea.split(",");
-       return new Empleado(partes[0], partes[1], partes[2], partes[3], Double.parseDouble(partes[4]), partes[5], partes[6]);
+       return new Empleado(partes[0], partes[1], partes[2], partes[3], Double.parseDouble(partes[4]), partes[5], partes[6], partes[7]);
     }
     
     

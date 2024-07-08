@@ -5,7 +5,14 @@
 package Control_Empleados;
 
 import Control_Usuario.Usuario;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -55,7 +62,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         cbxBanco = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        txtPuesto1 = new javax.swing.JTextField();
+        txtFechaIngreso = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -151,7 +158,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel10.setText("Fecha de Imgreso:");
 
-        txtPuesto1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        txtFechaIngreso.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,7 +193,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
                     .addComponent(txtPuesto)
                     .addComponent(jspSalarioFijo)
                     .addComponent(txtNumeroCuenta)
-                    .addComponent(txtPuesto1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLimpiarE)
                 .addContainerGap(26, Short.MAX_VALUE))
@@ -246,7 +253,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtPuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
@@ -338,7 +345,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
     
     public void AgregarEmpleado(){
         try {
-        String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Banco, NumeroCuenta;
+        String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Banco, NumeroCuenta, FechaIngreso;
         Double Salario_Fijo;
         
         if (txtID.getText().equals("")) {
@@ -371,6 +378,18 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Ingrese el Numero de cuenta del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
             return;
         }   
+         
+        FechaIngreso = txtFechaIngreso.getText(); 
+         
+        if (!ValidarFormatoFecha(FechaIngreso)) {
+            JOptionPane.showMessageDialog(this, "Ingrese una Fecha valida", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return; 
+        }
+        
+         if (!validarFecha(FechaIngreso)) {
+            JOptionPane.showMessageDialog(this, "La fecha de ingreso no puede ser mayor a la actual", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return; 
+        }
                 
         IdEmpleado = txtID.getText().toString();
         NombreEmpleado= txtNombre.getText().toString();
@@ -379,9 +398,10 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         Salario_Fijo = Double.parseDouble(jspSalarioFijo.getValue().toString());
         Banco = cbxBanco.getSelectedItem().toString();
         NumeroCuenta = txtNumeroCuenta.getText().toString();
+               
         
-             boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado);
-          if (EmpleadoExiste) {
+        boolean EmpleadoExiste = ValidarEmpleado(IdEmpleado);
+        if (EmpleadoExiste) {
             JOptionPane.showMessageDialog(this, "El empleado ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
             return;
         } 
@@ -389,7 +409,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
           return;
         }
         
-        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta);
+        Empleado empleado = new Empleado(IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo, Banco, NumeroCuenta, FechaIngreso);
         
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         empleadoDAO.crearEmpleado(empleado);
@@ -413,6 +433,7 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         jspSalarioFijo.setValue(0);
         cbxBanco.setSelectedIndex(0);
         txtNumeroCuenta.setText("");
+        txtFechaIngreso.setText("");
         
     }
   public boolean ValidarEmpleado(String IdEmpleado){
@@ -440,6 +461,37 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
         }
     
     }
+  
+  public boolean ValidarFormatoFecha(String FechaIngreso){
+  
+      DateFormat df = new SimpleDateFormat("dd/mm/yyyy");
+      df.setLenient(false);
+      try {
+          df.parse(FechaIngreso);
+      } catch (ParseException e) {
+          return false;
+      }
+      
+      return true;
+  }
+  
+    public boolean validarFecha(String fechaIngreso) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate fechaActual = LocalDate.now();            
+            LocalDate fechaIngresada = LocalDate.parse(fechaIngreso, formatter);
+
+            if (fechaIngresada.isAfter(fechaActual)) {
+                return false;
+            }
+
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelarE;
@@ -459,11 +511,11 @@ public class jd_AgregarEmpleado extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner jspSalarioFijo;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtFechaIngreso;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumeroCuenta;
     private javax.swing.JTextField txtPuesto;
-    private javax.swing.JTextField txtPuesto1;
     // End of variables declaration//GEN-END:variables
 
   

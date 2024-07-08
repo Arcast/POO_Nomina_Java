@@ -1,1 +1,2 @@
-001,Yamilin,Arroliga,Desarrollador,6000.0,BANPRO,1234567899
+001,Yamilin,Arroliga,Desarrollador,35000.0,LAFISE,1234567899,05/07/2024
+002,Pedro,Marmol,Director,1000.0,LAFISE,12345687,01/06/2024

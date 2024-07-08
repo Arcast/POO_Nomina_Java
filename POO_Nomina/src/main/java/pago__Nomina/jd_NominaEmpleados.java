@@ -4,10 +4,15 @@
  */
 package pago__Nomina;
 
+import Control_CuentasEmpresa.Cuentas;
+import Control_CuentasEmpresa.CuentasDAO;
+import Control_CuentasEmpresa.MovimientosCuentas;
+import Control_CuentasEmpresa.MovimientosCuentasDAO;
 import Control_Empleados.*;
 import Control_Usuario.Usuario;
 import Control_Usuario.UsuariosDAO;
 import java.awt.Color;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -24,6 +29,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
     private int FilaSeleccionada;
     private DefaultTableModel modelo;    
     String IdEmpleado, NombreEmpleado, ApellidoEmpleado, PuestoEmpleado, Salario_Fijo;
+    double SalarioNeto = 0.0;
     /**
      * Creates new form jd_AgregarEmpleado
      */
@@ -31,8 +37,8 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        
-       
+        modelo =(DefaultTableModel) tblNomina.getModel();
+        SalarioNeto = 0.0;
     }
 
     /**
@@ -58,16 +64,17 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         txtCuenta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        txtAntiguedad = new javax.swing.JTextField();
+        tblNomina = new javax.swing.JTable();
+        txtFechaIngreso = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        btnTransaccion = new javax.swing.JButton();
+        btnCalcular = new javax.swing.JButton();
         btnTransaccion1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         txtBanco = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtSalario = new javax.swing.JTextField();
+        btnLimpiarE = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,7 +142,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNomina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -151,27 +158,27 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblNomina);
 
-        txtAntiguedad.setEditable(false);
-        txtAntiguedad.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        txtAntiguedad.addActionListener(new java.awt.event.ActionListener() {
+        txtFechaIngreso.setEditable(false);
+        txtFechaIngreso.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtFechaIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAntiguedadActionPerformed(evt);
+                txtFechaIngresoActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel8.setText("Antiguedad:");
+        jLabel8.setText("Fecha Ingreso");
 
-        btnTransaccion.setBackground(new java.awt.Color(153, 204, 255));
-        btnTransaccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTransaccion.setForeground(new java.awt.Color(0, 0, 0));
-        btnTransaccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferencia-bancaria.png"))); // NOI18N
-        btnTransaccion.setText("empleados pagados");
-        btnTransaccion.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.setBackground(new java.awt.Color(153, 204, 255));
+        btnCalcular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCalcular.setForeground(new java.awt.Color(0, 0, 0));
+        btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferencia-bancaria.png"))); // NOI18N
+        btnCalcular.setText("Calcular");
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransaccionActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
@@ -215,6 +222,16 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             }
         });
 
+        btnLimpiarE.setBackground(new java.awt.Color(255, 255, 204));
+        btnLimpiarE.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnLimpiarE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/limpiar.png"))); // NOI18N
+        btnLimpiarE.setText("Limpiar");
+        btnLimpiarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarEActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -222,9 +239,26 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(112, 112, 112)
-                .addComponent(btnTransaccion)
-                .addGap(69, 69, 69))
+                .addGap(381, 381, 381))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(33, 33, 33)
+                    .addComponent(btnTransaccion1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiarE)
+                    .addGap(18, 18, 18)
+                    .addComponent(btnCancelarE)
+                    .addContainerGap())
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                    .addGap(42, 42, 42)
+                    .addComponent(jLabel7)
+                    .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(185, 185, 185)
+                    .addComponent(btnCalcular)
+                    .addContainerGap(175, Short.MAX_VALUE)))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -260,38 +294,22 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtPuesto)
-                            .addComponent(txtAntiguedad)
+                            .addComponent(txtFechaIngreso)
                             .addComponent(txtSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(33, 33, 33)
-                            .addComponent(btnTransaccion1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelarE)
-                            .addGap(17, 17, 17))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(42, 42, 42)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel9)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(15, Short.MAX_VALUE)
-                        .addComponent(btnTransaccion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +320,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -312,22 +330,26 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(5, 5, 5)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(btnCalcular, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransaccion1)
-                    .addComponent(btnCancelarE))
+                    .addComponent(btnCancelarE)
+                    .addComponent(btnLimpiarE))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
@@ -347,15 +369,22 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
     private void btnTransaccion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccion1ActionPerformed
         // TODO add your handling code here:
+        RealizarPago();        
     }//GEN-LAST:event_btnTransaccion1ActionPerformed
 
-    private void btnTransaccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaccionActionPerformed
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTransaccionActionPerformed
+        if (txtSalario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Realice la busqueda del empleado por Id", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }   
+        
+        CalculosNomina();
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
-    private void txtAntiguedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAntiguedadActionPerformed
+    private void txtFechaIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaIngresoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAntiguedadActionPerformed
+    }//GEN-LAST:event_txtFechaIngresoActionPerformed
 
     private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
         // TODO add your handling code here:
@@ -390,6 +419,11 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
     private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSalarioActionPerformed
+
+    private void btnLimpiarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,6 +499,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                     txtCuenta.setText(empleado.getNumeroCuenta());
                     txtPuesto.setText(empleado.getPuestoEmpleado());
                     txtSalario.setText(empleado.getSalario_Fijo().toString());
+                    txtFechaIngreso.setText(empleado.getFechaIngreso().toString());
                     
                     break;
                 }
@@ -482,12 +517,182 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         }
      }
     
+     public void limpiar(){
+        
+        txtID.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtPuesto.setText("");
+        txtSalario.setText("");
+        txtBanco.setText("");
+        txtCuenta.setText("");
+        txtFechaIngreso.setText("");
+        
+        //Limpieza de la tabla
+        int filas = modelo.getRowCount();
+
+         if (filas > 0) {
+            for (int a = 0; filas > a; a++) {
+                modelo.removeRow(0);
+            }
+         }
+         
+         SalarioNeto = 0.0;
+        
+    }  
+     
+    public void CalculosNomina(){     
+        Double SalarioBruto, DeduccionInss, SalarioMenosInss, IR;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        
+        SalarioBruto = Double.parseDouble(txtSalario.getText());
+        DeduccionInss = Double.parseDouble(decimalFormat.format((SalarioBruto * 0.07)));
+        SalarioMenosInss = SalarioBruto - DeduccionInss;
+        
+        //Calculo del IR
+        Double Salariox12, SobreExceso, MenosSobreExceso, ImpuestoBase; Double PorcentajeAplicable = 0.00;
+                
+        Salariox12 = SalarioMenosInss * 12; 
+        double[] arreglo = CalcularSobreExceso(Salariox12);        
+        SobreExceso = arreglo[0]; 
+        MenosSobreExceso = Salariox12 - SobreExceso; 
+        if (arreglo[1] > 0) {
+            PorcentajeAplicable = MenosSobreExceso * (arreglo[1] / 100);
+        }        
+        ImpuestoBase = PorcentajeAplicable + arreglo[2];        
+        IR = Double.parseDouble(decimalFormat.format((ImpuestoBase / 12)));        
+        //Fin calculo de IR
+        
+        SalarioNeto = SalarioMenosInss - IR;
+        
+        modelo.addRow(new Object[]{SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto});
+    }
+    
+    public double[] CalcularSobreExceso(double Salariox12){
+        double[] arreglo = new double[3];
+        int valor = 0; int PorcentajeAplicable = 0; int ImpuestoBase = 0;
+        
+        if (Salariox12 > 0.01 && Salariox12 <= 100000) {
+            valor  = 0;
+            PorcentajeAplicable = 0;
+            ImpuestoBase = 0;
+        }else if (Salariox12 > 100000.01 && Salariox12 <= 200000) {
+            valor  = 100000;
+            PorcentajeAplicable = 15;
+            ImpuestoBase = 0;
+        }else if (Salariox12 > 200000.01 && Salariox12 <= 350000) {
+            valor  = 200000;
+            PorcentajeAplicable = 20;
+            ImpuestoBase = 15000;
+        }else if (Salariox12 > 350000.01 && Salariox12 <= 500000) {
+            valor  = 350000;
+            PorcentajeAplicable = 25;
+            ImpuestoBase = 45000;
+        }else if (Salariox12 > 500000.01) {
+            valor  = 500000;
+            PorcentajeAplicable = 30;
+            ImpuestoBase = 82500;
+        }
+    
+        arreglo[0] = valor;
+        arreglo[1] = PorcentajeAplicable;
+        arreglo[2] = ImpuestoBase;
+        
+        return arreglo;
+    }
+    
+      
+    public void RealizarPago(){
+        try {
+        String NombreBancoCliente, NumeroCuentaCliente, Evento, NombreBanco;
+        String NumeroCuenta = "";
+        Double Monto; double Credito = 0; double Debito = 0;
+        
+        if (SalarioNeto <= 0.0) {
+           JOptionPane.showMessageDialog(this, "El Monto del pago debe de ser mayor a cero", "Error" , JOptionPane.ERROR_MESSAGE);
+           return;
+        }
+        
+         if (txtBanco.getText().equals("")) {
+           JOptionPane.showMessageDialog(this, "Realice el cálculo de la nómina del cliente", "Error" , JOptionPane.ERROR_MESSAGE);
+           return;
+        }
+        
+        List<Cuentas> listaCuentas = new ArrayList<>();   
+        CuentasDAO cuentasDAO = new CuentasDAO(); 
+        listaCuentas = cuentasDAO.leerCuentas(); 
+                                     
+        NombreBancoCliente = txtBanco.getText().toString();
+        
+        for (Cuentas cuenta : listaCuentas) {               
+            if (cuenta.getNombreBanco().equals(NombreBancoCliente)) {
+                NumeroCuenta = cuenta.getCuenta().toString();
+            }  
+        }
+                  
+        double SaldoActual = Double.parseDouble(SumarSaldo(NumeroCuenta));
+
+         if ((SaldoActual - SalarioNeto) < 0) {
+            JOptionPane.showMessageDialog(this, "No se puede realizar la transacción debido a que no cuenta con suficiente efectivo", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+         }            
+        Debito = SalarioNeto;
+                             
+             
+        if (JOptionPane.showConfirmDialog(this, "Desea arealizar el pago?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+          return;
+        }
+        
+        MovimientosCuentas movimientos = new MovimientosCuentas(NumeroCuenta, String.valueOf(Credito), String.valueOf(Debito));
+        
+        MovimientosCuentasDAO movimientosCuentasDAO = new MovimientosCuentasDAO();
+        movimientosCuentasDAO.CrearMovimientoCuentas(movimientos);
+        
+        limpiar();
+                      
+        JOptionPane.showMessageDialog(this, "Pago relizado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al realizar la transacción de pago", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+    
+    public String SumarSaldo(String NumeroCuenta){
+         
+         try {
+             
+            List<MovimientosCuentas> listaMovimientos = new ArrayList<>();   
+            MovimientosCuentasDAO movimientosCuentasDAO = new MovimientosCuentasDAO(); 
+            listaMovimientos = movimientosCuentasDAO.leerMovimientosCuentas(); 
+            
+            double Creditos = 0.0; double Debitos = 0.0; double Sumatoria = 0.0;
+            String Saldo;
+            
+            for (MovimientosCuentas movimientos : listaMovimientos) {               
+                if (movimientos.getNumeroCuenta().equals(NumeroCuenta)) {
+                    Creditos += Double.parseDouble(movimientos.getCreditos());
+                    Debitos += Double.parseDouble(movimientos.getDebitos());
+                }
+            }
+            
+            Sumatoria = Creditos - Debitos;               
+            Saldo = String.valueOf(Sumatoria);
+                      
+            return Saldo;
+             
+         } catch (Exception e) {
+             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al calcular el saldo", "Error" , JOptionPane.ERROR_MESSAGE);
+            return "";
+         }
+     }
  
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnCancelarE;
-    private javax.swing.JButton btnTransaccion;
+    private javax.swing.JButton btnLimpiarE;
     private javax.swing.JButton btnTransaccion1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -500,11 +705,11 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtAntiguedad;
+    private javax.swing.JTable tblNomina;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtBanco;
     private javax.swing.JTextField txtCuenta;
+    private javax.swing.JTextField txtFechaIngreso;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPuesto;
