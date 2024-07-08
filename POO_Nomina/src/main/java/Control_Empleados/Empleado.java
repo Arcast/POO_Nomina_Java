@@ -92,8 +92,7 @@ public class Empleado {
     }
     
     
-    @Override//quitar el override
-    public String toString() {//cambiar nombre tostring a otro nombre ya que es una clase
+    public String toEmpleado() {
         return IdEmpleado+ "," +NombreEmpleado + "," + ApellidoEmpleado + "," + PuestoEmpleado + "," + Salario_Fijo + "," + Banco + "," + NumeroCuenta + "," + FechaIngreso;
     }
 

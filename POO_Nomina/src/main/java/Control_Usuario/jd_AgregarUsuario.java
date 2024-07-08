@@ -207,7 +207,7 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-       this.dispose();
+       this.dispose();// Cierra la ventana actual y libera los recursos asociados a ella
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
@@ -224,9 +224,12 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
 
     private void txtcontrasena2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcontrasena2KeyPressed
         // TODO add your handling code here:
-        if (evt.getExtendedKeyCode()==KeyEvent.VK_ENTER) {
-            AgregarUsuario();
-        }
+  
+// Verifica si la tecla presionada es la tecla Enter
+if (evt.getExtendedKeyCode() == KeyEvent.VK_ENTER) {
+    // Llama al método AgregarUsuario() para agregar un usuario
+    AgregarUsuario();
+}
     }//GEN-LAST:event_txtcontrasena2KeyPressed
 
     /**
@@ -271,87 +274,106 @@ public class jd_AgregarUsuario extends javax.swing.JDialog {
         });
     }
     
-    public void AgregarUsuario(){
-        try {
-            String NombreUsuario, Contrasena, Contrasena2;        
-                
+  // Método para agregar un nuevo usuario
+public void AgregarUsuario() {
+    try {
+        // Obtener los datos del usuario desde los campos de texto en la interfaz
+        String NombreUsuario, Contrasena, Contrasena2;
+        
+        // Validar que el campo de Usuario no esté vacío
         if (txtUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
+            JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si falta el nombre de usuario
         }
         
+        // Validar que el campo de Contraseña no esté vacío
         if (txtContrasena.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
+            JOptionPane.showMessageDialog(this, "Ingrese la contraseña", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si falta la contraseña
         }
         
+        // Obtener los valores de los campos de texto
         NombreUsuario = txtUsuario.getText().toString();
         Contrasena = txtContrasena.getText().toString();
         Contrasena2 = txtcontrasena2.getText().toString();
         
-         boolean UsuarioExiste = ValidarUsuario(NombreUsuario);
-          if (UsuarioExiste) {
-            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
+        // Validar si el nombre de usuario ya existe
+        boolean UsuarioExiste = ValidarUsuario(NombreUsuario);
+        if (UsuarioExiste) {
+            JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si el usuario ya existe
+        }
         
+        // Validar que las contraseñas coincidan
         if (!Contrasena.equals(Contrasena2)) {
-            JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }             
+            JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si las contraseñas no coinciden
+        }
         
+        // Confirmar si el usuario desea agregar el nuevo usuario
         if (JOptionPane.showConfirmDialog(this, "Desea agregar el usuario ingresado?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+            // Limpiar los campos de texto y enfocar el campo de Usuario nuevamente si el usuario cancela
             txtUsuario.setText("");
             txtContrasena.setText("");
             txtcontrasena2.setText("");
             txtUsuario.requestFocus();
-            return;
+            return; // Salir del método si el usuario cancela la operación
         }
         
+        // Crear un objeto Usuario con los datos ingresados
         Usuario usuario = new Usuario(NombreUsuario, Contrasena);
         
+        // Crear una instancia de UsuariosDAO para manejar la persistencia
         UsuariosDAO usuariosDAO = new UsuariosDAO();
+        
+        // Guardar el nuevo usuario utilizando el método de crearUsuario en UsuariosDAO
         usuariosDAO.crearUsuario(usuario);
-                
+        
+        // Limpiar los campos de texto después de agregar el usuario exitosamente
         txtUsuario.setText("");
         txtContrasena.setText("");
         txtcontrasena2.setText("");
         
-        JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+        // Mostrar un mensaje de éxito al usuario
+        JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
         
-        
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-             
-    
+    } catch (Exception e) {
+        // Capturar y mostrar cualquier error que ocurra durante el proceso
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método en caso de error
     }
+}
     
-    public boolean ValidarUsuario(String NombreUsuario){
+  // Método para validar si un nombre de usuario ya existe en la lista de usuarios
+public boolean ValidarUsuario(String NombreUsuario) {
+    try {
+        boolean existe = false; // Variable para indicar si el usuario existe
         
-        try {
-            boolean existe = false;
-            List<Usuario> usuariosList = new ArrayList<>();            
-            UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
-            usuariosList = usuariosDAO.leerUsuarios();
-
-            
-            for (Usuario us : usuariosList) {
-                 if (us.getNombreUsuario().equals(NombreUsuario)) {
-                    existe = true;
-                    break;
-                }
+        // Crear una lista para almacenar los usuarios leídos desde el archivo
+        List<Usuario> usuariosList = new ArrayList<>();
+        
+        // Crear una instancia de UsuariosDAO para acceder a los métodos de lectura de usuarios
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        
+        // Leer todos los usuarios del archivo y almacenarlos en la lista usuariosList
+        usuariosList = usuariosDAO.leerUsuarios();
+        
+        // Recorrer la lista de usuarios para verificar si el NombreUsuario ya existe
+        for (Usuario us : usuariosList) {
+            if (us.getNombreUsuario().equals(NombreUsuario)) {
+                existe = true; // Cambiar existe a true si se encuentra el nombre de usuario
+                break; // Salir del bucle porque ya se encontró el nombre de usuario
             }
-            
-            return existe;
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
-            return false;
         }
-    
+        
+        return existe; // Devolver true si el usuario existe, false si no existe
+        
+    } catch (Exception e) {
+        // Capturar cualquier excepción que pueda ocurrir durante la lectura de usuarios
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return false; // Devolver false en caso de error
     }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

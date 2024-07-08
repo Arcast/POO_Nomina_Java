@@ -4,7 +4,7 @@
  */
 package Control_CuentasEmpresa;
 
-import Control_Usuario.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class MovimientosCuentasDAO {
                 archivo.createNewFile();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace();//diagnostica errores de una manera detallada
         }
     }
         

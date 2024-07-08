@@ -35,8 +35,8 @@ public class Usuario {
         this.Contrasena = contrasena;
     }
 
-    @Override
-    public String toString() {
+   
+    public String toString() {//nombre no realiza el metodo tostring
         return NombreUsuario + "," + Contrasena;
     }
 

@@ -173,7 +173,6 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
         btnCalcular.setBackground(new java.awt.Color(153, 204, 255));
         btnCalcular.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCalcular.setForeground(new java.awt.Color(0, 0, 0));
         btnCalcular.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferencia-bancaria.png"))); // NOI18N
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +183,6 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
         btnTransaccion1.setBackground(new java.awt.Color(153, 204, 255));
         btnTransaccion1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnTransaccion1.setForeground(new java.awt.Color(0, 0, 0));
         btnTransaccion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/transferir-dinero.png"))); // NOI18N
         btnTransaccion1.setText("Proceso de pago");
         btnTransaccion1.addActionListener(new java.awt.event.ActionListener() {
@@ -302,7 +300,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +318,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -350,7 +348,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                     .addComponent(btnTransaccion1)
                     .addComponent(btnCancelarE)
                     .addComponent(btnLimpiarE))
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 62, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -361,7 +359,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -644,6 +642,7 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         }
         
         MovimientosCuentas movimientos = new MovimientosCuentas(NumeroCuenta, String.valueOf(Credito), String.valueOf(Debito));
+        //valueof= convierte varios tipos de dato en cadena
         
         MovimientosCuentasDAO movimientosCuentasDAO = new MovimientosCuentasDAO();
         movimientosCuentasDAO.CrearMovimientoCuentas(movimientos);

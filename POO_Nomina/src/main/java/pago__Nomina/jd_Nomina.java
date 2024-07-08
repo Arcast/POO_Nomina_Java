@@ -59,7 +59,7 @@ public class jd_Nomina extends javax.swing.JDialog {
         setTitle("Nomina Individual");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(204, 204, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 255))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
 
@@ -111,9 +111,9 @@ public class jd_Nomina extends javax.swing.JDialog {
                             .addGap(181, 181, 181)
                             .addComponent(jLabel6))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(47, 47, 47)
+                            .addGap(26, 26, 26)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,7 +126,7 @@ public class jd_Nomina extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
@@ -136,7 +136,7 @@ public class jd_Nomina extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnCancelarE)
-                .addGap(38, 38, 38))
+                .addGap(29, 29, 29))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,9 +149,7 @@ public class jd_Nomina extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -162,84 +160,98 @@ public class jd_Nomina extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarEActionPerformed
 
-    public void CalculosNomina(){     
+   public void CalculosNomina() {     
+    try {
+        // Inicialización de variables locales
+        List<Empleado> empleado = new ArrayList<>(); 
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO(); // Instancia del DAO de Empleado
+        empleado = empleadoDAO.leerEmpleado(); // Lectura de empleados desde el archivo
         
-        try {
-              
-            List<Empleado> empleado = new ArrayList<>(); 
-            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
-            empleado = empleadoDAO.leerEmpleado(); 
-
-            for (Empleado emp : empleado) {   
-
-                Double SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto;
-                String NombreCompleto, Cargo;
-                DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
-                NombreCompleto = emp.getNombreEmpleado().toString() + " " + emp.getApellidoEmpleado().toString();   
-                Cargo = emp.getPuestoEmpleado();
-                SalarioBruto = Double.parseDouble(emp.getSalario_Fijo().toString());             
-
-                DeduccionInss = Double.parseDouble(decimalFormat.format((SalarioBruto * 0.07)));
-                SalarioMenosInss = SalarioBruto - DeduccionInss;
-
-                //Calculo del IR
-                Double Salariox12, SobreExceso, MenosSobreExceso, ImpuestoBase; Double PorcentajeAplicable = 0.00;
-
-                Salariox12 = SalarioMenosInss * 12; 
-                double[] arreglo = CalcularSobreExceso(Salariox12);        
-                SobreExceso = arreglo[0]; 
-                MenosSobreExceso = Salariox12 - SobreExceso; 
-                if (arreglo[1] > 0) {
-                    PorcentajeAplicable = MenosSobreExceso * (arreglo[1] / 100);
-                }        
-                ImpuestoBase = PorcentajeAplicable + arreglo[2];        
-                IR = Double.parseDouble(decimalFormat.format((ImpuestoBase / 12)));        
-                //Fin calculo de IR
-
-                SalarioNeto = SalarioMenosInss - IR;
-
-                modelo.addRow(new Object[]{NombreCompleto, Cargo, SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto});
-            } 
+        for (Empleado emp : empleado) {   
+            // Declaración de variables locales para cálculos de nómina
+            Double SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto;
+            String NombreCompleto, Cargo;
+            DecimalFormat decimalFormat = new DecimalFormat("#.##"); // Formateador decimal
             
-        } catch (Exception e) {
-             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al cargar la lista de Empleados", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+            // Obtención de datos del empleado
+            NombreCompleto = emp.getNombreEmpleado() + " " + emp.getApellidoEmpleado();   
+            Cargo = emp.getPuestoEmpleado();
+            SalarioBruto = emp.getSalario_Fijo();             
+            
+            // Cálculo de deducción INSS (7% del salario bruto)
+            DeduccionInss = Double.parseDouble(decimalFormat.format((SalarioBruto * 0.07)));
+            SalarioMenosInss = SalarioBruto - DeduccionInss;
+
+            // Cálculo del Impuesto sobre la Renta (IR)
+            Double Salariox12, SobreExceso, MenosSobreExceso, ImpuestoBase; 
+            Double PorcentajeAplicable = 0.00;
+            
+            Salariox12 = SalarioMenosInss * 12; 
+            double[] arreglo = CalcularSobreExceso(Salariox12);        
+            SobreExceso = arreglo[0]; 
+            MenosSobreExceso = Salariox12 - SobreExceso; 
+            if (arreglo[1] > 0) {
+                PorcentajeAplicable = MenosSobreExceso * (arreglo[1] / 100);
+            }        
+            ImpuestoBase = PorcentajeAplicable + arreglo[2];        
+            IR = Double.parseDouble(decimalFormat.format((ImpuestoBase / 12)));        
+            
+            // Cálculo del salario neto
+            SalarioNeto = SalarioMenosInss - IR;
+
+            // Agregar resultados al modelo de tabla (ejemplo, suponiendo un modelo existente)
+            modelo.addRow(new Object[]{NombreCompleto, Cargo, SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto});
+        } 
+        
+    } catch (Exception e) {
+        // Manejo de excepciones
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al cargar la lista de Empleados", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
     }
+}
+
+/**
+ * Método que calcula los valores sobre el exceso para el cálculo del Impuesto sobre la Renta (IR).
+ * @param Salariox12 Salario anual a calcular.
+ * @return Arreglo con los valores: [valor sobre exceso, porcentaje aplicable, impuesto base].
+ */
+public double[] CalcularSobreExceso(double Salariox12) {
+    double[] arreglo = new double[3];
+    int valor = 0; 
+    int PorcentajeAplicable = 0; 
+    int ImpuestoBase = 0;
     
-    public double[] CalcularSobreExceso(double Salariox12){
-        double[] arreglo = new double[3];
-        int valor = 0; int PorcentajeAplicable = 0; int ImpuestoBase = 0;
-        
-        if (Salariox12 > 0.01 && Salariox12 <= 100000) {
-            valor  = 0;
-            PorcentajeAplicable = 0;
-            ImpuestoBase = 0;
-        }else if (Salariox12 > 100000.01 && Salariox12 <= 200000) {
-            valor  = 100000;
-            PorcentajeAplicable = 15;
-            ImpuestoBase = 0;
-        }else if (Salariox12 > 200000.01 && Salariox12 <= 350000) {
-            valor  = 200000;
-            PorcentajeAplicable = 20;
-            ImpuestoBase = 15000;
-        }else if (Salariox12 > 350000.01 && Salariox12 <= 500000) {
-            valor  = 350000;
-            PorcentajeAplicable = 25;
-            ImpuestoBase = 45000;
-        }else if (Salariox12 > 500000.01) {
-            valor  = 500000;
-            PorcentajeAplicable = 30;
-            ImpuestoBase = 82500;
-        }
+    // Determinación de los valores sobre exceso, porcentaje aplicable e impuesto base según el salario anual
+    if (Salariox12 > 0.01 && Salariox12 <= 100000) {
+        valor = 0;
+        PorcentajeAplicable = 0;
+        ImpuestoBase = 0;
+    } else if (Salariox12 > 100000.01 && Salariox12 <= 200000) {
+        valor = 100000;
+        PorcentajeAplicable = 15;
+        ImpuestoBase = 0;
+    } else if (Salariox12 > 200000.01 && Salariox12 <= 350000) {
+        valor = 200000;
+        PorcentajeAplicable = 20;
+        ImpuestoBase = 15000;
+    } else if (Salariox12 > 350000.01 && Salariox12 <= 500000) {
+        valor = 350000;
+        PorcentajeAplicable = 25;
+        ImpuestoBase = 45000;
+    } else if (Salariox12 > 500000.01) {
+        valor = 500000;
+        PorcentajeAplicable = 30;
+        ImpuestoBase = 82500;
+    }
+
+    // Asignación de valores al arreglo de salida
+    arreglo[0] = valor;
+    arreglo[1] = PorcentajeAplicable;
+    arreglo[2] = ImpuestoBase;
     
-        arreglo[0] = valor;
-        arreglo[1] = PorcentajeAplicable;
-        arreglo[2] = ImpuestoBase;
-        
-        return arreglo;
-    }    
+    return arreglo;
+}
+
     
     /**
      * @param args the command line arguments

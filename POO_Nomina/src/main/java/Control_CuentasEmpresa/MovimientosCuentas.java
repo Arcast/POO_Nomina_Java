@@ -4,12 +4,7 @@
  */
 package Control_CuentasEmpresa;
 
-import Control_Usuario.*;
 
-/** 
- *
- *
- */
 public class MovimientosCuentas {    
     private String NumeroCuenta;
     private String Creditos;

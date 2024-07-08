@@ -31,7 +31,7 @@ public class EmpleadoDAO {
         /*IOException es una excepción en Java que se lanza cuando ocurre un error 
         relacionado con la entrada o salida de datos, como leer o escribir en archivos*/
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo, true))) {
-            writer.write(empleado.toString());
+            writer.write(empleado.toEmpleado());
             writer.newLine();
         }
     }
@@ -52,9 +52,9 @@ public class EmpleadoDAO {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivo))) {
             for (Empleado empleado : empleados) {
                 if (empleado.getIdEmpleado().equals(IdEmpleado)) {
-                    writer.write(nuevoEmpleado.toString());
+                    writer.write(nuevoEmpleado.toEmpleado());
                 } else {
-                    writer.write(empleado.toString());
+                    writer.write(empleado.toEmpleado());
                 }
                 writer.newLine();
             }

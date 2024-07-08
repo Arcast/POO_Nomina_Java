@@ -17,6 +17,7 @@ import Control_Usuario.jd_MostrarUsuarios;
 import javax.swing.JFrame;
 import pago__Nomina.jd_Nomina;
 import pago__Nomina.jd_NominaEmpleados;
+import presentacion.Presentacion;
 
 /**
  *
@@ -48,8 +49,12 @@ public class Menu extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
+        Uni = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         Jmi_Salir = new javax.swing.JMenuItem();
         jmi_AgregarEmpleado = new javax.swing.JMenu();
@@ -78,21 +83,55 @@ public class Menu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
+        jLabel3.setText("\"Creciendo juntos, un empleado a la vez.\"");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsc.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 713, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 143, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(140, 140, 140))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel5)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel3)
+                .addGap(72, 72, 72)
+                .addComponent(jLabel1)
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UNI.png"))); // NOI18N
-        jMenuBar1.add(jMenu2);
+        Uni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UNI.png"))); // NOI18N
+
+        jMenuItem1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jMenuItem1.setText("Quienes somos?");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        Uni.add(jMenuItem1);
+
+        jMenuBar1.add(Uni);
 
         jMenu1.setText("Inicio");
         jMenu1.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
@@ -151,6 +190,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jmi_AgregarEmpleado);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cuenta (1).png"))); // NOI18N
         jMenu5.setText("Cuentas Empresa");
         jMenu5.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
 
@@ -188,7 +228,7 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jmi_NominaEmpleado);
 
         EmpleadosNomina.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        EmpleadosNomina.setText(" Empleados Pagados");
+        EmpleadosNomina.setText("Nomina General");
         EmpleadosNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmpleadosNominaActionPerformed(evt);
@@ -250,7 +290,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -336,6 +376,12 @@ public class Menu extends javax.swing.JFrame {
         cuentas.show();
     }//GEN-LAST:event_jmi_AgregarCuentasActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         Presentacion presentacion = new Presentacion(this, rootPaneCheckingEnabled);
+        presentacion.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,12 +424,16 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem Jmi_ModificarUsuarios;
     private javax.swing.JMenuItem Jmi_MostrarUsuarios;
     private javax.swing.JMenuItem Jmi_Salir;
+    private javax.swing.JMenu Uni;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem jmEliminarEmpleado;

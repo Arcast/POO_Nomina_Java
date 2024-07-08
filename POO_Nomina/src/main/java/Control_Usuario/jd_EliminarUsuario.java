@@ -19,12 +19,20 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
     /**
      * Creates new form jd_AgregarUsuario
      */
-    public jd_EliminarUsuario(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        this.setLocationRelativeTo(null);
-        btnAceptar.enable(false);
-    }
+   // Constructor de la ventana para eliminar usuario
+public jd_EliminarUsuario(java.awt.Frame parent, boolean modal) {
+    // Llama al constructor de la clase base (JDialog) con el frame padre y si es modal o no
+    super(parent, modal);
+    
+    // Inicializa y configura los componentes visuales generados por el diseñador
+    initComponents();
+    
+    // Centra la ventana en el centro de la pantalla
+    this.setLocationRelativeTo(null);
+    
+    // Deshabilita el botón de aceptar al inicializar la ventana
+    btnAceptar.setEnabled(false);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,9 +47,9 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Eliminar Usuario");
@@ -64,16 +72,6 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
             }
         });
 
-        btnAceptar.setBackground(new java.awt.Color(204, 255, 204));
-        btnAceptar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
-        btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
-            }
-        });
-
         btnCancelar.setBackground(new java.awt.Color(255, 204, 204));
         btnCancelar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cancelar.png"))); // NOI18N
@@ -85,6 +83,16 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/despedido.png"))); // NOI18N
+
+        btnAceptar.setBackground(new java.awt.Color(204, 255, 204));
+        btnAceptar.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cheque.png"))); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,8 +107,8 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
                         .addComponent(btnAceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar))
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 205, Short.MAX_VALUE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 236, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,9 +132,9 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
-                .addGap(126, 126, 126))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnAceptar))
+                .addGap(136, 136, 136))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,11 +151,6 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        ValidarUsuario();
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
        this.dispose();
@@ -156,6 +159,11 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        ValidarUsuario();
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,66 +210,83 @@ public class jd_EliminarUsuario extends javax.swing.JDialog {
         });
     }
     
-     public void ValidarUsuario(){
-         try {
-            String _usuario;
-            
-            if (txtUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Usuario a eliminar", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
+  // Método para validar y eliminar un usuario
+public void ValidarUsuario() {
+    try {
+        String _usuario; // Variable para almacenar el nombre de usuario a validar y eliminar
+        
+        // Validar que se haya ingresado un nombre de usuario para eliminar
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el Usuario a eliminar", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si no se ha ingresado un nombre de usuario
+        }
+        
+        _usuario = txtUsuario.getText().toString().toLowerCase(); // Obtener el nombre de usuario desde el campo de texto y convertirlo a minúsculas
+        
+        // Crear una lista para almacenar los usuarios leídos desde el archivo
+        List<Usuario> usuarios = new ArrayList<>();
+        
+        // Crear una instancia de UsuariosDAO para acceder a los métodos de lectura de usuarios
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        
+        // Leer todos los usuarios del archivo y almacenarlos en la lista usuarios
+        usuarios = usuariosDAO.leerUsuarios();
+        
+        boolean existe = false; // Variable para indicar si el usuario existe
+        
+        // Verificar si el nombre de usuario existe en la lista de usuarios
+        for (Usuario us : usuarios) {
+            if (us.getNombreUsuario().toLowerCase().equals(_usuario)) {
+                existe = true; // Cambiar existe a true si se encuentra el nombre de usuario
+                break; // Salir del bucle porque ya se encontró el nombre de usuario
             }
-            
-             _usuario = txtUsuario.getText().toString().toLowerCase();
-            
-            List<Usuario> usuarios = new ArrayList<>();            
-            UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
-            usuarios = usuariosDAO.leerUsuarios();
-
-            boolean existe = false;
-            for (Usuario us : usuarios) {
-                 if (us.getNombreUsuario().toLowerCase().equals(_usuario)) {
-                    existe = true;
-                    break;
-                }
-            }
-
-            if (!existe) {
-                JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            //Eliminamos el usuario            
-            EliminarUsuario();      
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+        }
+        
+        // Si el usuario no existe, mostrar un mensaje de error y salir del método
+        if (!existe) {
+            JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-     }
-    
-    public void EliminarUsuario(){
-        try{
-            String _usuario;   
+        
+        // Llamar al método EliminarUsuario para eliminar el usuario validado
+        EliminarUsuario();
+        
+    } catch (Exception e) {
+        // Capturar y mostrar cualquier error que ocurra durante la validación o eliminación del usuario
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método en caso de error
+    }
+}
+ // Método para eliminar un usuario
+public void EliminarUsuario() {
+    try {
+        String _usuario; // Variable para almacenar el nombre de usuario a eliminar
 
-            _usuario = txtUsuario.getText().toString();         
+        _usuario = txtUsuario.getText().toString(); // Obtener el nombre de usuario desde el campo de texto
 
-            if (JOptionPane.showConfirmDialog(this, "Desea eliminar el usuario?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-              return;
-            }
-
-            UsuariosDAO usuariosDAO = new UsuariosDAO();
-            usuariosDAO.eliminarUsuario(_usuario);
-
-            txtUsuario.setText("");
-                        
-            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-                
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
+        // Confirmar si el usuario desea eliminar el usuario seleccionado
+        if (JOptionPane.showConfirmDialog(this, "Desea eliminar el usuario?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+            return; // Salir del método si el usuario cancela la eliminación
         }
-    }    
-    
+
+        // Crear una instancia de UsuariosDAO para acceder a los métodos de eliminación
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+        
+        // Llamar al método eliminarUsuario de UsuariosDAO para eliminar el usuario
+        usuariosDAO.eliminarUsuario(_usuario);
+
+        // Limpiar el campo de texto después de eliminar el usuario exitosamente
+        txtUsuario.setText("");
+
+        // Mostrar un mensaje de éxito al usuario
+        JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception e) {
+        // Capturar y mostrar cualquier error que ocurra durante el proceso de eliminación
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al eliminar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método en caso de error
+    }
+}
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -122,17 +122,17 @@ public class jd_ModificarUsuario extends javax.swing.JDialog {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtContrasena)
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                             .addComponent(txtUsuario)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnAceptar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(131, 131, 131)
                                 .addComponent(btnCancelar))
-                            .addComponent(txtcontrasena2, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtcontrasena2))))
                 .addGap(13, 13, 13)
                 .addComponent(btnBuscar)
                 .addGap(99, 99, 99))
@@ -143,16 +143,16 @@ public class jd_ModificarUsuario extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(284, 284, 284))
+                .addGap(265, 265, 265))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(40, 40, 40)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -244,97 +244,117 @@ public class jd_ModificarUsuario extends javax.swing.JDialog {
         });
     }
     
-     public void ValidarUsuario(){
-         try {
-            String _usuario;
-            
-            if (txtUsuario.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-            return;
-            }
-            
-             _usuario = txtUsuario.getText().toString();
-            
-            List<Usuario> usuarios = new ArrayList<>();            
-            UsuariosDAO usuariosDAO = new UsuariosDAO(); //Llama al dao de usuario
-            usuarios = usuariosDAO.leerUsuarios();
+// Método para validar la existencia de un usuario antes de modificar la contraseña
+public void ValidarUsuario() {
+    try {
+        String _usuario; // Variable para almacenar el nombre de usuario a validar
 
-            boolean existe = false;
-            for (Usuario us : usuarios) {
-                 if (us.getNombreUsuario().equals(_usuario)) {
-                    existe = true;
-                    break;
-                }
-            }
+        // Validar que se haya ingresado un nombre de usuario
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el Usuario", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si no se ha ingresado un nombre de usuario
+        }
 
-            if (!existe) {
-                JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
-                return;
+        _usuario = txtUsuario.getText().toString(); // Obtener el nombre de usuario desde el campo de texto
+
+        // Crear una lista para almacenar los usuarios leídos desde la base de datos
+        List<Usuario> usuarios = new ArrayList<>();
+
+        // Crear una instancia de UsuariosDAO para acceder a los métodos de lectura de usuarios
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+        // Leer todos los usuarios desde la base de datos y almacenarlos en la lista usuarios
+        usuarios = usuariosDAO.leerUsuarios();
+
+        boolean existe = false; // Variable para indicar si el usuario existe en la base de datos
+
+        // Verificar si el nombre de usuario existe en la lista de usuarios
+        for (Usuario us : usuarios) {
+            if (us.getNombreUsuario().equals(_usuario)) {
+                existe = true; // Cambiar existe a true si se encuentra el nombre de usuario en la base de datos
+                break; // Salir del bucle porque ya se encontró el nombre de usuario
             }
-            
-            txtUsuario.enable(false);
-            txtContrasena.enable(true);
-            txtcontrasena2.enable(true);            
-            txtContrasena.setBackground(Color.GREEN);
-            txtcontrasena2.setBackground(Color.GREEN);
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+        }
+
+        // Si el usuario no existe, mostrar un mensaje de error y salir del método
+        if (!existe) {
+            JOptionPane.showMessageDialog(this, "El Usuario ingresado no existe", "Notificación", JOptionPane.ERROR_MESSAGE);
             return;
         }
-     }
-    
-    public void ModificarContrasena(){
-        try {
-            String _usuario, _contrasena, _contrasena2;        
-                
-            if (txtContrasena.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese la Contraseña", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
 
-            if (txtcontrasena2.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese la contraseña de confirmación", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
+        // Habilitar campos para modificar contraseña y cambiar el color de fondo
+        txtUsuario.setEnabled(false);
+        txtContrasena.setEnabled(true);
+        txtcontrasena2.setEnabled(true);
+        txtContrasena.setBackground(Color.GREEN);
+        txtcontrasena2.setBackground(Color.GREEN);
 
-            _usuario = txtUsuario.getText().toString();
-            _contrasena = txtContrasena.getText().toString();
-            _contrasena2 = txtcontrasena2.getText().toString();
-
-            if (!_contrasena.equals(_contrasena2)) {
-                JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error" , JOptionPane.ERROR_MESSAGE);
-                return;
-            }             
-
-            if (JOptionPane.showConfirmDialog(this, "Desea actualizar el usuario?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-              return;
-            }
-
-            Usuario usuario = new Usuario(_usuario, _contrasena);
-
-            UsuariosDAO usuariosDAO = new UsuariosDAO();
-            usuariosDAO.actualizarUsuario(_usuario, usuario);
-
-            txtUsuario.setText("");
-            txtContrasena.setText("");
-            txtcontrasena2.setText("");
-            
-            txtContrasena.setBackground(Color.RED);
-            txtcontrasena2.setBackground(Color.RED);
-            txtUsuario.enable(true);
-            txtContrasena.enable(false);
-            txtcontrasena2.enable(false);
-            
-            JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-                
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-             
-    
+    } catch (Exception e) {
+        // Capturar y mostrar cualquier error que ocurra durante la validación del usuario
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método en caso de error
     }
+}
+    // Método para modificar la contraseña de un usuario validado
+public void ModificarContrasena() {
+    try {
+        String _usuario, _contrasena, _contrasena2;
+
+        // Validar que se haya ingresado la nueva contraseña
+        if (txtContrasena.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese la Contraseña", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si no se ha ingresado la contraseña
+        }
+
+        // Validar que se haya ingresado la confirmación de la contraseña
+        if (txtcontrasena2.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese la contraseña de confirmación", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+            return; // Salir del método si no se ha ingresado la confirmación de la contraseña
+        }
+
+        _usuario = txtUsuario.getText().toString(); // Obtener el nombre de usuario desde el campo de texto
+        _contrasena = txtContrasena.getText().toString(); // Obtener la nueva contraseña desde el campo de texto
+        _contrasena2 = txtcontrasena2.getText().toString(); // Obtener la confirmación de la contraseña desde el campo de texto
+
+        // Validar que las contraseñas coincidan
+        if (!_contrasena.equals(_contrasena2)) {
+            JOptionPane.showMessageDialog(this, "Las Contraseñas no coinciden", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si las contraseñas no coinciden
+        }
+
+        // Confirmar si el usuario desea actualizar la contraseña
+        if (JOptionPane.showConfirmDialog(this, "Desea actualizar el usuario?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+            return; // Salir del método si el usuario cancela la actualización
+        }
+
+        // Crear un objeto Usuario con el usuario y la nueva contraseña
+        Usuario usuario = new Usuario(_usuario, _contrasena);
+
+        // Crear una instancia de UsuariosDAO para acceder a los métodos de actualización de usuario
+        UsuariosDAO usuariosDAO = new UsuariosDAO();
+
+        // Llamar al método actualizarUsuario de UsuariosDAO para actualizar la contraseña del usuario
+        usuariosDAO.actualizarUsuario(_usuario, usuario);
+
+        // Limpiar los campos de texto y restablecer colores de fondo después de actualizar exitosamente
+        txtUsuario.setText("");
+        txtContrasena.setText("");
+        txtcontrasena2.setText("");
+        txtContrasena.setBackground(Color.RED);
+        txtcontrasena2.setBackground(Color.RED);
+        txtUsuario.setEnabled(true);
+        txtContrasena.setEnabled(false);
+        txtcontrasena2.setEnabled(false);
+
+        // Mostrar un mensaje de éxito al usuario
+        JOptionPane.showMessageDialog(this, "Usuario guardado exitosamente", "Notificación", JOptionPane.INFORMATION_MESSAGE);
+
+    } catch (Exception e) {
+        // Capturar y mostrar cualquier error que ocurra durante la modificación de la contraseña
+        JOptionPane.showMessageDialog(this, "Ha ocurrido un error al guardar el usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        return; // Salir del método en caso de error
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
