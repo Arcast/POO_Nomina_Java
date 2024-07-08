@@ -6,6 +6,7 @@ package pago__Nomina;
 
 import Control_Empleados.Empleado;
 import Control_Empleados.EmpleadoDAO;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -28,7 +29,8 @@ public class jd_Nomina extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null); //Para poner centrado el jdialog        
-        //modelo =(DefaultTableModel) tblEmpleados.getModel();
+        modelo =(DefaultTableModel) tblNomina.getModel();
+        CalculosNomina();
 
     }
 
@@ -49,7 +51,7 @@ public class jd_Nomina extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         btnCancelarE = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNomina = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -57,7 +59,7 @@ public class jd_Nomina extends javax.swing.JDialog {
         setTitle("Nomina Individual");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(204, 204, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 11), new java.awt.Color(204, 204, 255))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
 
@@ -71,8 +73,8 @@ public class jd_Nomina extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNomina.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblNomina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,12 +90,12 @@ public class jd_Nomina extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblNomina);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/salario (1).png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 2, 24)); // NOI18N
-        jLabel6.setText("\"Listado de Empleados con Nómina Pagada\"       ");
+        jLabel6.setText("\"Nómina General\"       ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,29 +107,30 @@ public class jd_Nomina extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(194, 194, 194)
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addGap(181, 181, 181)
+                            .addComponent(jLabel6))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(47, 47, 47)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(371, 371, 371))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(183, 183, 183))))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(371, 371, 371))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jLabel3)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,60 +162,83 @@ public class jd_Nomina extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarEActionPerformed
 
-    public void Nomina(String IdEmpleado){
-        String NombreComleto, Cargo, PuestoEmpleado, IR;
-        double Salario_Fijo, SalarioMensual, insssLaboral;
-        try {
-            boolean existe = false;
-            List<Empleado> empleadoList = new ArrayList<>(); 
-            empleadoList = empleadoDAO.leerEmpleado();   
-            
-             for (Empleado emp : empleadoList) {            
-                 if (emp.getIdEmpleado().equals(IdEmpleado)) {  
-                    NombreComleto = (emp.getNombreEmpleado() + " " + emp.getApellidoEmpleado());
-                    Cargo = emp.getPuestoEmpleado();
-                    SalarioMensual = emp.getSalario_Fijo();
-                    //nsssLaboral = (SalarioMensual) * 0.07);
-                    
-                    // modelo.addRow(new Object[]{IdEmpleado, NombreComleto, PuestoEmpleado, Salario_Fijo});
-                    
-                    existe = true;
-                    break;
-                }
-            }
-            
-            if (!existe) {
-                JOptionPane.showMessageDialog(this, "El Empleado ingresado no existe", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }            
-            
-          
+    public void CalculosNomina(){     
         
+        try {
+              
+            List<Empleado> empleado = new ArrayList<>(); 
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
+            empleado = empleadoDAO.leerEmpleado(); 
+
+            for (Empleado emp : empleado) {   
+
+                Double SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto;
+                String NombreCompleto, Cargo;
+                DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+                NombreCompleto = emp.getNombreEmpleado().toString() + " " + emp.getApellidoEmpleado().toString();   
+                Cargo = emp.getPuestoEmpleado();
+                SalarioBruto = Double.parseDouble(emp.getSalario_Fijo().toString());             
+
+                DeduccionInss = Double.parseDouble(decimalFormat.format((SalarioBruto * 0.07)));
+                SalarioMenosInss = SalarioBruto - DeduccionInss;
+
+                //Calculo del IR
+                Double Salariox12, SobreExceso, MenosSobreExceso, ImpuestoBase; Double PorcentajeAplicable = 0.00;
+
+                Salariox12 = SalarioMenosInss * 12; 
+                double[] arreglo = CalcularSobreExceso(Salariox12);        
+                SobreExceso = arreglo[0]; 
+                MenosSobreExceso = Salariox12 - SobreExceso; 
+                if (arreglo[1] > 0) {
+                    PorcentajeAplicable = MenosSobreExceso * (arreglo[1] / 100);
+                }        
+                ImpuestoBase = PorcentajeAplicable + arreglo[2];        
+                IR = Double.parseDouble(decimalFormat.format((ImpuestoBase / 12)));        
+                //Fin calculo de IR
+
+                SalarioNeto = SalarioMenosInss - IR;
+
+                modelo.addRow(new Object[]{NombreCompleto, Cargo, SalarioBruto, DeduccionInss, SalarioMenosInss, IR, SalarioNeto});
+            } 
             
         } catch (Exception e) {
+             JOptionPane.showMessageDialog(this, "Ha ocurrido un error al cargar la lista de Empleados", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
     }
     
-     public boolean ValidarEmpleado(String IdEmpleado){
+    public double[] CalcularSobreExceso(double Salariox12){
+        double[] arreglo = new double[3];
+        int valor = 0; int PorcentajeAplicable = 0; int ImpuestoBase = 0;
         
-        try {
-            boolean existe = false;
-            empleadoList = empleadoDAO.leerEmpleado();           
-                       
-            for (Empleado us : empleadoList) {            
-                 if (us.getIdEmpleado().equals(IdEmpleado)) {
-                    existe = true;
-                    break;
-                }
-            }            
-            return existe;
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al leer el empleado", "Error" , JOptionPane.ERROR_MESSAGE);
-            return false;
+        if (Salariox12 > 0.01 && Salariox12 <= 100000) {
+            valor  = 0;
+            PorcentajeAplicable = 0;
+            ImpuestoBase = 0;
+        }else if (Salariox12 > 100000.01 && Salariox12 <= 200000) {
+            valor  = 100000;
+            PorcentajeAplicable = 15;
+            ImpuestoBase = 0;
+        }else if (Salariox12 > 200000.01 && Salariox12 <= 350000) {
+            valor  = 200000;
+            PorcentajeAplicable = 20;
+            ImpuestoBase = 15000;
+        }else if (Salariox12 > 350000.01 && Salariox12 <= 500000) {
+            valor  = 350000;
+            PorcentajeAplicable = 25;
+            ImpuestoBase = 45000;
+        }else if (Salariox12 > 500000.01) {
+            valor  = 500000;
+            PorcentajeAplicable = 30;
+            ImpuestoBase = 82500;
         }
     
+        arreglo[0] = valor;
+        arreglo[1] = PorcentajeAplicable;
+        arreglo[2] = ImpuestoBase;
+        
+        return arreglo;
     }    
     
     /**
@@ -264,6 +290,6 @@ public class jd_Nomina extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblNomina;
     // End of variables declaration//GEN-END:variables
 }

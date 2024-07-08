@@ -1,2 +1,3 @@
 001,Yamilin,Arroliga,Desarrollador,35000.0,LAFISE,1234567899,05/07/2024
 002,Pedro,Marmol,Director,1000.0,LAFISE,12345687,01/06/2024
+003,Federico,valverde,Conserje,10000.0,BAC,987654321,10/05/2024
