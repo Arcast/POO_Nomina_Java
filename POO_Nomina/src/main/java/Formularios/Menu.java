@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import Control_CuentasEmpresa.jd_AgregarCuentas;
+import Control_CuentasEmpresa.jd_AgregarSaldo;
 import Control_Empleados.jd_AgregarEmpleado;
 import Control_Empleados.jd_EliminarEmpleado;
 import Control_Empleados.jd_ModificarEmpleados;
@@ -55,6 +57,9 @@ public class Menu extends javax.swing.JFrame {
         jmi_VerListaEmpleado = new javax.swing.JMenuItem();
         jmodificarDatosE = new javax.swing.JMenuItem();
         jmEliminarEmpleado = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jmi_AgregarCuentas = new javax.swing.JMenuItem();
+        jmi_ModificarSaldo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmi_NominaEmpleado = new javax.swing.JMenuItem();
         EmpleadosNomina = new javax.swing.JMenuItem();
@@ -145,6 +150,29 @@ public class Menu extends javax.swing.JFrame {
         jmi_AgregarEmpleado.add(jmEliminarEmpleado);
 
         jMenuBar1.add(jmi_AgregarEmpleado);
+
+        jMenu5.setText("Cuentas Empresa");
+        jMenu5.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+
+        jmi_AgregarCuentas.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jmi_AgregarCuentas.setText("Agregar Cuentas");
+        jmi_AgregarCuentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_AgregarCuentasActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jmi_AgregarCuentas);
+
+        jmi_ModificarSaldo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        jmi_ModificarSaldo.setText("Modificar Saldo");
+        jmi_ModificarSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ModificarSaldoActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jmi_ModificarSaldo);
+
+        jMenuBar1.add(jMenu5);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/calendario-de-nomina.png"))); // NOI18N
         jMenu3.setText("Nomina");
@@ -296,6 +324,18 @@ public class Menu extends javax.swing.JFrame {
         nomina.show();
     }//GEN-LAST:event_EmpleadosNominaActionPerformed
 
+    private void jmi_ModificarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ModificarSaldoActionPerformed
+        // TODO add your handling code here:
+        jd_AgregarSaldo saldo = new jd_AgregarSaldo(this, rootPaneCheckingEnabled);
+        saldo.show();
+    }//GEN-LAST:event_jmi_ModificarSaldoActionPerformed
+
+    private void jmi_AgregarCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_AgregarCuentasActionPerformed
+        // TODO add your handling code here:
+        jd_AgregarCuentas cuentas = new jd_AgregarCuentas(this, rootPaneCheckingEnabled);
+        cuentas.show();
+    }//GEN-LAST:event_jmi_AgregarCuentasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -342,12 +382,15 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JMenuItem jmEliminarEmpleado;
     private javax.swing.JMenuItem jmi;
+    private javax.swing.JMenuItem jmi_AgregarCuentas;
     private javax.swing.JMenu jmi_AgregarEmpleado;
+    private javax.swing.JMenuItem jmi_ModificarSaldo;
     private javax.swing.JMenuItem jmi_NominaEmpleado;
     private javax.swing.JMenuItem jmi_VerListaEmpleado;
     private javax.swing.JMenuItem jmodificarDatosE;

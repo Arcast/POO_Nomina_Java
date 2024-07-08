@@ -186,7 +186,7 @@ public class jd_ModificarEmpleados extends javax.swing.JDialog {
         jLabel8.setText("Num. Cuenta");
 
         cbxBanco.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        cbxBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAFISE", "BAC", "BANPRO", "BDF" }));
+        cbxBanco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LAFISE", "BAC" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

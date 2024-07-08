@@ -5,6 +5,8 @@
 package pago__Nomina;
 
 import Control_Empleados.*;
+import Control_Usuario.Usuario;
+import Control_Usuario.UsuariosDAO;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,17 +55,19 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         txtApellido = new javax.swing.JTextField();
         txtPuesto = new javax.swing.JTextField();
         btnCancelarE = new javax.swing.JButton();
-        jspSalarioFijo = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
-        txtPuesto1 = new javax.swing.JTextField();
+        txtCuenta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtPuesto2 = new javax.swing.JTextField();
+        txtAntiguedad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnTransaccion = new javax.swing.JButton();
         btnTransaccion1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
+        txtBanco = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtSalario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,7 +88,6 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Salario Fijo:");
 
-        txtID.setEditable(false);
         txtID.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,18 +124,14 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             }
         });
 
-        jspSalarioFijo.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jspSalarioFijo.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 0.25f));
-        jspSalarioFijo.setEnabled(false);
-
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel7.setText("Cuenta Bancaria:");
 
-        txtPuesto1.setEditable(false);
-        txtPuesto1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        txtPuesto1.addActionListener(new java.awt.event.ActionListener() {
+        txtCuenta.setEditable(false);
+        txtCuenta.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPuesto1ActionPerformed(evt);
+                txtCuentaActionPerformed(evt);
             }
         });
 
@@ -154,11 +153,11 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        txtPuesto2.setEditable(false);
-        txtPuesto2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        txtPuesto2.addActionListener(new java.awt.event.ActionListener() {
+        txtAntiguedad.setEditable(false);
+        txtAntiguedad.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtAntiguedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPuesto2ActionPerformed(evt);
+                txtAntiguedadActionPerformed(evt);
             }
         });
 
@@ -197,6 +196,25 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             }
         });
 
+        txtBanco.setEditable(false);
+        txtBanco.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBancoActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        jLabel9.setText("Banco");
+
+        txtSalario.setEditable(false);
+        txtSalario.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        txtSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSalarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,7 +236,6 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel7)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(57, 57, 57))
@@ -237,26 +254,34 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtPuesto1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jspSalarioFijo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPuesto2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPuesto)
+                            .addComponent(txtAntiguedad)
+                            .addComponent(txtSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(42, 42, 42)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(33, 33, 33)
                             .addComponent(btnTransaccion1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCancelarE)
-                            .addGap(17, 17, 17))))
+                            .addGap(17, 17, 17))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(42, 42, 42)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel9)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -281,19 +306,23 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jspSalarioFijo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(txtPuesto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAntiguedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPuesto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(5, 5, 5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -324,13 +353,13 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTransaccionActionPerformed
 
-    private void txtPuesto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto2ActionPerformed
+    private void txtAntiguedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAntiguedadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuesto2ActionPerformed
+    }//GEN-LAST:event_txtAntiguedadActionPerformed
 
-    private void txtPuesto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuesto1ActionPerformed
+    private void txtCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuesto1ActionPerformed
+    }//GEN-LAST:event_txtCuentaActionPerformed
 
     private void btnCancelarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEActionPerformed
         // TODO add your handling code here:
@@ -351,7 +380,16 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        MostrarEmpleado();        
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBancoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBancoActionPerformed
+
+    private void txtSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSalarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSalarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +437,51 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
             dialog.setVisible(true);
         });
     }
+    
+    public void MostrarEmpleado(){
+         try {
+             
+            String IdEmpleado;
+            
+            if (txtID.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Ingrese el Id del empleado", "Notificación" , JOptionPane.INFORMATION_MESSAGE);
+            return;
+            }
+            
+            IdEmpleado = txtID.getText().toString();
+            
+            List<Empleado> listaEmpleados = new ArrayList<>();            
+            EmpleadoDAO empleadoDAO = new EmpleadoDAO(); //Llama al dao de usuario
+            listaEmpleados = empleadoDAO.leerEmpleado();
+
+            boolean existe = false;
+            for (Empleado empleado : listaEmpleados) {
+                 if (empleado.getIdEmpleado().equals(IdEmpleado)) {
+                    existe = true;
+                    
+                    txtNombre.setText(empleado.getNombreEmpleado());
+                    txtApellido.setText(empleado.getApellidoEmpleado());
+                    txtBanco.setText(empleado.getBanco());
+                    txtCuenta.setText(empleado.getNumeroCuenta());
+                    txtPuesto.setText(empleado.getPuestoEmpleado());
+                    txtSalario.setText(empleado.getSalario_Fijo().toString());
+                    
+                    break;
+                }
+            }
+
+            if (!existe) {
+                JOptionPane.showMessageDialog(this, "El Id del Empleado ingresado no existe", "Notificación" , JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un error al buscar el usuario", "Error" , JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+     }
+    
  
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -414,16 +497,18 @@ public class jd_NominaEmpleados extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JSpinner jspSalarioFijo;
+    private javax.swing.JTextField txtAntiguedad;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtBanco;
+    private javax.swing.JTextField txtCuenta;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPuesto;
-    private javax.swing.JTextField txtPuesto1;
-    private javax.swing.JTextField txtPuesto2;
+    private javax.swing.JTextField txtSalario;
     // End of variables declaration//GEN-END:variables
 
   
